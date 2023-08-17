@@ -30,27 +30,29 @@ export default function ConcertHalls() {
         <>
         <section>
         <h2>It's place Concert Halls !</h2>
-        <div className="concert-halls-book">
-            <div>
+        <div className="concerthalls-book">
+            <div className="searchbar">
                 <label htmlFor="">Search: </label>
                 <input type="text" onChange={handleSearch} />
             </div>
+            <div className="concertHalls">
             {filteredConcertHalls.map((concertHall) => {
                 
                 return (
                     <>
-                        <div key={concertHall.id} id={`${concertHall.name}-${concertHall.id}`}>
-                            <h2>{concertHall.name}</h2>
-                            <img className="concertHall-picture" src={concertHall.picture_outside} alt={concertHall.name} />
-                            <ul>
-                                <li>{concertHall.city}</li>
-                                <li>{concertHall.description}</li>
-                            </ul>
-                            <img className="concertHall-picture" src={concertHall.picture_inside} alt={concertHall.name} />
+                        <div className="concertHalls_card" key={concertHall.id} id={`${concertHall.name}-${concertHall.id}`}>
+                            <h2>{concertHall.name} - {concertHall.city}</h2>
+                            <img className="concertHalls_picture" src={concertHall.picture_outside} alt={concertHall.name} />
+                            <div className="concertHalls_details">
+                                <p>{concertHall.city}</p>
+                                <p>{concertHall.description}</p>
+                            <img className="concertHall_picture" src={concertHall.picture_inside} alt={concertHall.name} />
+                            </div>
                         </div>                   
                     </>
                 );
             })}
+            </div>
         </div>
         </section>
         </>

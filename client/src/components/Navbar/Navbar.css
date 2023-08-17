@@ -1,0 +1,24 @@
+.navbar {
+    background-color: #000;
+    color: #fff;
+    height: 20vh;
+    line-height: 20vh;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    padding: 10px 0;
+}
+#logo_site {
+    width: 100px;
+    height: auto;
+    position: relative;
+    top: 3vh;
+}
+
+@media only screen and (min-width: 768px) {
+
+
+}
+@media only screen and (min-width: 1024px) {
+
+}

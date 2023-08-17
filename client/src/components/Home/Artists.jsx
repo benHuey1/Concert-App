@@ -30,18 +30,20 @@ export default function Artists() {
         <>
         <section>
         <h2>It's place Artists !</h2>
-        <div className="artist-book">
+        <div className="artists_book">
             <div>
                 <label htmlFor="">Search: </label>
                 <input type="text" onChange={handleSearch} />
             </div>
+            <div className="artists"></div>
             {filteredArtists.map((artist) => {
                 
                 return (
                     <>
-                        <div key={artist.id} id={`${artist.name}-${artist.id}`}>
+                        <div className="artists_card" key={artist.id} id={`${artist.name}-${artist.id}`}>
                             <h2>{artist.name}</h2>
-                            <img className="artist-picture" src={artist.picture} alt={artist.name} />
+                            <img className="artists_picture" src={artist.picture} alt={artist.name} />
+                            <img className="plus_icon" src="../../../public/plus.svg" alt="plus-icon" />
                             <ul>
                                 <p>{artist.style_id}</p>
                                 <p>{artist.contact}</p>
