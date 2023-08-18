@@ -66,7 +66,7 @@ export default function Artists() {
                 onClick={() => handleArtistClick(artist)}>
                             <h2>{artist.name}</h2>
                             <img className="artists_picture" src={artist.picture} alt={artist.name} />
-                            <img className="plus_icon" src="/plus.svg" alt="plus-icon" />
+                            <img className="plus_icon" src="/logo-plus.svg" alt="plus-icon" />
                             <ul>
                                 <p>{artist.style_id}</p>
                                 <p>{artist.contact}</p>
