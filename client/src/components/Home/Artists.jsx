@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Artists.css"
 
 export default function Artists() {
     const [artists, setArtists] = useState([]);
     const [filteredArtists,setFilteredArtists] = useState([]);
+    const [selectedArtist, setSelectedArtist] = useState(null);
 
 
     useEffect(() => {
@@ -25,6 +26,27 @@ export default function Artists() {
         });
         setFilteredArtists(result);
     }
+
+    
+  const handleArtistClick = (artist) => {
+    if (selectedArtist && selectedArtist.id === artist.id) {
+      setSelectedArtist(null);
+    } else {
+      setSelectedArtist(artist);
+    }
+  };
+
+    const getArtistCardStyle = (artist) => {
+    if (selectedArtist && selectedArtist.id === artist.id) {
+      return {
+        maxHeight: '1500px'
+      };
+    } else {
+      return {
+        maxHeight: '300px'
+      };
+    }
+  };
     
     return(
         <>
@@ -40,10 +62,11 @@ export default function Artists() {
                 
                 return (
                     <>
-                        <div className="artists_card" key={artist.id} id={`${artist.name}-${artist.id}`}>
+                        <div className="artists_card" key={artist.id} id={`${artist.name}-${artist.id}`}  style={getArtistCardStyle(artist)}
+                onClick={() => handleArtistClick(artist)}>
                             <h2>{artist.name}</h2>
                             <img className="artists_picture" src={artist.picture} alt={artist.name} />
-                            <img className="plus_icon" src="../../../public/plus.svg" alt="plus-icon" />
+                            <img className="plus_icon" src="/plus.svg" alt="plus-icon" />
                             <ul>
                                 <p>{artist.style_id}</p>
                                 <p>{artist.contact}</p>

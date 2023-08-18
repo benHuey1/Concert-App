@@ -1,10 +1,14 @@
+.artists {
+    display: flex;
+    flex-direction: row;
+}
 .artists_card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 300px;
+    max-height: 300px;
     overflow: hidden;
-    margin: 5px 0px;
+    margin: 5px 0;
 }
 .plus_icon {
     display: none;
@@ -16,17 +20,33 @@
     height: auto;
 }
 .artists_picture{
-}
-.artists_card:hover{
-    color: gray;
-    .artists_picture {
-        filter: blur(2px);
-    }
-    .plus_icon {
-        display: block;
-    }
-}
-.artists_picture{
         width: 300px;
         height: auto;
+}
+
+.artists_card:hover .artists_picture {
+    filter: blur(2px);
+}
+.artists_card:hover .plus_icon {
+    display: block;
+}
+.artists_card:hover h2 {
+    color: gray;
+}
+
+@media only screen and (min-width: 768px) {
+
+
+}
+@media only screen and (min-width: 1024px) {
+    .artists {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        gap: 10px;
     }
+    .artists > * {
+        flex: 1 0 300px;
+    }
+}

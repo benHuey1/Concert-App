@@ -1,18 +1,36 @@
-.navbar {
-    background-color: #000;
-    color: #fff;
-    height: 20vh;
-    line-height: 20vh;
+.navbar, .navbar_home {
     display: flex;
     justify-content: space-around;
     align-content: center;
     padding: 10px 0;
+
 }
-#logo_site {
+.navbar {
+    background-color: #000;
+    height: 20vh;
+    line-height: 20vh;
+}
+.navbar #logo_site {
     width: 100px;
     height: auto;
     position: relative;
     top: 3vh;
+}
+.navbar_home {
+    background-color: #a44bbd;
+    /* color: #fff; */
+    height: 10vh;
+    line-height: 10vh;
+}
+.nav_link {
+    color: #fff;
+    height: '0px';
+}
+.nav_link:active {
+    color: '#a44bbd';
+}
+.nav_link:hover {
+    color: #605e5e;
 }
 
 @media only screen and (min-width: 768px) {

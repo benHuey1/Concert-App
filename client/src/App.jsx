@@ -8,6 +8,7 @@ import Concerts from './components/Home/Concerts';
 import Artists from './components/Home/Artists';
 import ConcertHalls from './components/Home/Concert-halls';
 import Contact from './components/Contact/Contact';
+import MyAccount from './components/My-Account/My-Account';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/home/concert-halls" element={<ConcertHalls />} />
         </Route>
         <Route path='/contact' element={<Contact />} />
+        <Route path='/my-account' element={<MyAccount />} />
       </Routes>
     </div>
     </>

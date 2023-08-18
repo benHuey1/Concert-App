@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Axios from "axios";
 import Login from "../Login-signup/Login";
+import "../Navbar/Navbar.css"
 
 export default function Home() {
-    
+    const styleLink =({ isActive }) => {
+        return { 
+            color: isActive ? '#000' : '#fff',
+            height: '0px'
+        }
+    };
     // const [colonne_1, setColonne_1] = useState("");
     // const [colonne_2, setColonne_2] = useState("");
     // const [colonne1_2list, setColonne1_2list] = useState([]);
@@ -37,11 +43,10 @@ export default function Home() {
     // };
     return (
         <>
-        Home Page
-            <nav>
-                <Link to="/home/concerts">Concerts</Link>
-                <Link to="/home/artists">Artists</Link>
-                <Link to="/home/concert-halls">Concert Halls</Link>
+            <nav className="navbar_home">
+                <NavLink to="/home/concerts" style={styleLink}>Concerts</NavLink>
+                <NavLink to="/home/artists" style={styleLink}>Artists</NavLink>
+                <NavLink to="/home/concert-halls" style={styleLink}>Concert Halls</NavLink>
             </nav>
             <Outlet />
             {/* <Login /> */}
