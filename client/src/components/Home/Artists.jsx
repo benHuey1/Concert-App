@@ -64,11 +64,11 @@ export default function Artists() {
                     <>
                         <div className="artists_card" key={artist.id} id={`${artist.name}-${artist.id}`}  style={getArtistCardStyle(artist)}
                 onClick={() => handleArtistClick(artist)}>
-                            <h2>{artist.name}</h2>
+                            <h2>{artist.name} - {(artist.on_tour == 1)? "On Tour" : "Not currently on tour"}</h2>
                             <img className="artists_picture" src={artist.picture} alt={artist.name} />
                             <img className="plus_icon" src="/logo-plus.svg" alt="plus-icon" />
                             <ul>
-                                <p>{artist.style_id}</p>
+                                <p>{artist.style}</p>
                                 <p>{artist.contact}</p>
                                 <p>{(artist.on_tour == 1)? "On Tour" : "Not currently on tour"}</p>
                                 <p>{artist.description}</p>

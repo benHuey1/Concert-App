@@ -24,14 +24,16 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/concerts", (req, res) => {
-    const sqlSelect = "SELECT * FROM concerts";
+    const sqlSelect =
+        "SELECT concerts.*,  artists.name AS artist, artists.picture AS artist_picture, style.name AS style, concert_halls.name AS concert_hall, concert_halls.city AS city, concert_halls.picture_inside AS concert_hall_picture FROM concerts JOIN artists ON concerts.artists_id = artists.id JOIN style ON artists.style_id = style.id JOIN concert_halls ON concerts.concert_halls_id = concert_halls.id";
     db.query(sqlSelect, (err, results) => {
         res.send(results);
     });
 });
 
 app.get("/artists", (req, res) => {
-    const sqlSelect = "SELECT * FROM artists";
+    const sqlSelect =
+        "SELECT artists.*, style.name AS style FROM artists JOIN style ON artists.style_id = style.id";
     db.query(sqlSelect, (err, results) => {
         // preventDefault();
         // if (err) {

@@ -1,0 +1,9 @@
+.concerts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 10px;
+}
+.concerts_card {
+    border:  2px solid #000;
+}
