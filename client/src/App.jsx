@@ -11,6 +11,7 @@ import Contact from './components/Contact/Contact';
 import MyAccount from './components/My-Account/My-Account';
 import Error404 from './components/Error-page/Error404';
 import ErrorPage from './components/Error-page/Error-page';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/my-account' element={<MyAccount />} errorElement={<ErrorPage />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
+      <Footer />
     </div>
     </>
   )
