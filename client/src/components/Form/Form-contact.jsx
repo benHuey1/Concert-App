@@ -16,7 +16,7 @@ export default function FormContact() {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>Name:</label>
-                <input
+                <input type="text"
                     {...register("name", {
                     required: true,
                     minLength: 2,
@@ -42,22 +42,28 @@ export default function FormContact() {
                   <p>Name must be between 2 and 20 characters long, no bumbers, '_' accepted</p>
                 )}
                 <label>Mail:</label>
-                <input {...register("mail", {
-                    required: true,
-                    pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                    })} />
+                <input type="mail" 
+                    {...register("mail", {
+                        required: true,
+                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                    })} 
+                />
                 {errors?.mail?.type === "mail" && (
                     <p>Invalid email address</p>
                 )}
                 {errors?.mail?.type === "required" && 
                     <p>This field is required</p>
                 }
+                {errors?.mail?.type === "pattern" && (
+                    // eslint-disable-next-line react/no-unescaped-entities
+                    <p>Valid email address only</p>
+                )}
                 {errors.mail && (
                     // eslint-disable-next-line react/no-unescaped-entities
                   <p>Insert an email adress valid</p>
                 )}
                 <label>Object:</label>
-                <input
+                <input type="text"
                     {...register("object", {
                     required: true,
                     minLength: 2,
@@ -83,12 +89,13 @@ export default function FormContact() {
                   <p>Object must be between 2 and 20 characters long, no numbers</p>
                 )}
                 <label>Message:</label>
-                <textarea {...register("textarea", { 
-                    required: true,
-                    minLength: 2,
-                    maxLength: 200,
-                    pattern: /^[A-Za-z0-9\s:()]+$/i
-                     })} />
+                <textarea type="textarea" placeholder="Describe your needs" 
+                    {...register("textarea", { 
+                        required: true,
+                        minLength: 2,
+                        maxLength: 200,
+                        pattern: /^[A-Za-z0-9\s:()]+$/i
+                    })} />
                 {errors?.textarea?.type === "required" && 
                     <p>This field is required</p>
                 }

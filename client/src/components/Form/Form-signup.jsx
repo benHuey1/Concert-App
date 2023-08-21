@@ -1,16 +1,34 @@
 import { useState } from "react";
 import Button from "../Button/Button";
+import { useForm } from "react-hook-form";
 // import Checkbox from './Checkbox';
 
 export default function FormSignup() {
-    const [name, setName] = useState('');
-    const [password, setPassword] = useState('');
-    const [mail, setMail] = useState('');
+    // const [name, setName] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [mail, setMail] = useState('');
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+  defaultValues: {
+    status: "world"
+  },
+  mode: "onChange"
+});
+    const onSubmit = (data) => { alert(JSON.stringify(data)); };
+    console.log(watch("example")); // you can watch individual input by pass the name of the input
+
+    // const form = useForm({
+    //     defaultValues: {
+    //         status: "world"
+    //     },
+    //     mode: "onChange"
+    // });
+    // const { register } = form;
 
     return (
         <>
-        <form className="form" action="" method="post">
-            <label htmlFor="">
+        <form onSubmit={handleSubmit(onSubmit)}>
+            {/* <label htmlFor="">
                 Name: 
                 <input type="text" value={name} id="" onChange={e => setName(e.target.value)} />
             </label>
@@ -31,18 +49,88 @@ export default function FormSignup() {
                     <input type="radio" value="public" />
                     I'm a Public
                 </label>
-            </div>
+            </div> */}
+                <label>Name:</label>
+                <input type="text"
+                    {...register("name", {
+                    required: true,
+                    minLength: 2,
+                    maxLength: 20,
+                    pattern: /^[A-Z_]+$/i
+                    })}
+                />
+                {errors?.name?.type === "required" && 
+                    <p>This field is required</p>
+                }
+                {errors?.name?.type === "minLength" && (
+                    <p>First name cannot subceed 2 characters</p>
+                )}
+                {errors?.name?.type === "maxLength" && (
+                    <p>First name cannot exceed 20 characters</p>
+                )}
+                {errors?.name?.type === "pattern" && (
+                    // eslint-disable-next-line react/no-unescaped-entities
+                    <p>'_' & Alphabetical characters only</p>
+                )}
+                {/* {errors.name && (
+                    // eslint-disable-next-line react/no-unescaped-entities
+                  <p>Name must be between 2 and 20 characters long, no bumbers, '_' accepted</p>
+                )} */}
+            <label>Mail:</label>
+            <input type="mail" 
+                {...register("mail", {
+                    required: true,
+                    pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                })} 
+            />
+            {errors?.mail?.type === "mail" && (
+                <p>Invalid email address</p>
+            )}
+            {errors?.mail?.type === "required" && 
+                <p>This field is required</p>
+            }                
+            {errors?.mail?.type === "pattern" && (
+                // eslint-disable-next-line react/no-unescaped-entities
+                <p>Valid email address only</p>
+            )}
+            <label>Password:</label>
+            <input type="password"
+                {...register("password", {
+                required: true,
+                minLength: 8,
+                maxLength: 20,
+                pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+
+                })}
+            />
+            {errors?.password?.type === "required" && 
+                <p>This field is required</p>
+            }
+            {errors?.password?.type === "minLength" && (
+                <p>Password cannot subceed 8 characters</p>
+            )}
+            {errors?.password?.type === "maxLength" && (
+                <p>Password cannot exceed 20 characters</p>
+            )}
+            {errors?.password?.type === "pattern" && (
+                // eslint-disable-next-line react/no-unescaped-entities
+                <p>Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character.</p>
+            )}
+            <label>
+                <div>
+                    <input type="radio" value="artist" {...register("status")} />
+                    I'm an Artist
+                </div>
+            </label>
+            <label>
+                <div>
+                    <input type="radio" value="public" {...register("status")} />
+                    I'm a Public
+                </div>
+            </label>
+            <pre>{JSON.stringify(watch(), null, 2)}</pre>
             <Button content="Sign Up"/>
             <div>Already registered ? <a href="/login">Login</a></div>
-            {name !== '' &&
-                <p>Your name is {name}.</p>
-            }
-            {password !== '' &&
-                <p>Your password is {password}.</p>
-            }
-            {mail !== '' &&
-                <p>Your mail is {mail}.</p>
-            }
         </form>
         </>
     )
