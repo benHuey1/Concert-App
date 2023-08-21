@@ -16,14 +16,16 @@
     position: relative;
     top: -130px;
     width: 50px;
-    color: aliceblue;
+    color: #f0f8ff;
     height: auto;
 }
 .artists_picture{
         width: 300px;
         height: auto;
 }
-
+.artists_card:hover {
+    cursor: pointer;
+}
 .artists_card:hover .artists_picture {
     filter: blur(2px);
 }
