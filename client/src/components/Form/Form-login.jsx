@@ -14,6 +14,16 @@ export default function FormLogin() {
     const onSubmit = (data) => { alert(JSON.stringify(data)); };
     console.log(watch("example")); // you can watch individual input by pass the name of the input
 
+    const [values, setValues] = useState({
+        name: '',
+        mail: '',
+        password: '',
+        status: ''
+    })
+    const handleInput = (event) => {
+        setValues(prev =>({...prev, [event.target.name] : [event.target.value]}))
+    }
+
     return (
         <>            
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -22,7 +32,7 @@ export default function FormLogin() {
                 {...register("mail", {
                     required: true,
                     pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                })} 
+                })} onChange={handleInput}
             />
             {errors?.mail?.type === "mail" && (
                 <p>Invalid email address</p>
@@ -46,7 +56,7 @@ export default function FormLogin() {
                 maxLength: 20,
                 pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
-                })}
+                })} onChange={handleInput}
             />
             {errors?.password?.type === "required" && 
                 <p>This field is required</p>
@@ -65,8 +75,8 @@ export default function FormLogin() {
                 // eslint-disable-next-line react/no-unescaped-entities
               <p>Password is required and must be at least 8 characters long.</p>
             )} */}
-            <Button content="Log In"/>
-            <div>Not yet registered ? <a href="/signup">Signup</a></div>
+            <Button content="Log-In"/>
+            <div>Not yet registered ? <a href="/signup">Sign-up</a></div>
         </form>
         </>
     )

@@ -18,7 +18,8 @@ const db = mysql.createPool({
 //     });
 // }
 
-// app.use(express());
+app.use(express());
+
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -58,6 +59,27 @@ app.get("/concert-halls", (req, res) => {
     const sqlSelect = "SELECT * FROM concert_halls";
     db.query(sqlSelect, (err, results) => {
         res.send(results);
+    });
+});
+
+app.post("/signup", (req, res) => {
+    const values = [
+        req.body.name,
+        req.body.mail,
+        req.body.password,
+        req.body.status,
+    ];
+    const sqlInsert =
+        "INSERT INTO users (name, mail, password, status) VALUES (?,?,?,?);";
+    db.query(sqlInsert, [values], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error inserting data into the database");
+        } else {
+            console.log("Successful insert");
+            res.send(result);
+        }
+        res.send(result);
     });
 });
 
