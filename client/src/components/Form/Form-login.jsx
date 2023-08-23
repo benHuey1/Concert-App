@@ -1,28 +1,57 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 // import Checkbox from './Checkbox';
 
 export default function FormLogin() {
-    // const [name, setName] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [mail, setmail] = useState('');
+    const [mail, setMail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = (data) => { alert(JSON.stringify(data)); };
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+        defaultValues: {
+        status: "world"
+         },
+        mode: "onChange"
+    });
     console.log(watch("example")); // you can watch individual input by pass the name of the input
 
-    const [values, setValues] = useState({
-        name: '',
-        mail: '',
-        password: '',
-        status: ''
-    })
-    const handleInput = (event) => {
-        setValues(prev =>({...prev, [event.target.name] : [event.target.value]}))
-    }
+    const navigate = useNavigate();
+    axios.defaults.withCredentials = true;
+   
+    // useEffect(()=>{
+    //     axios.get("http://localhost:3001/my-account")
+    //     .then( res => {
+    //         console.log(res);
+    //         if (res.data.valid) {
+    //             navigate('/home')
+    //         } else {
+    //             navigate('/login')
+    //         }
+    //     })
+    //     .catch( err => console.log(err))
+    // })
+
+    const onSubmit = async () =>{
+        try {
+            const response = await axios.post("http://localhost:3001/login", {
+                mail,
+                password,
+            });
+            if (response.data.Login) {
+                console.log(response.data);
+                console.log("Welcome, " + response.data.name);
+                navigate('/home');
+            } else {
+                alert("No record");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+};
 
     return (
         <>            
@@ -32,7 +61,7 @@ export default function FormLogin() {
                 {...register("mail", {
                     required: true,
                     pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                })} onChange={handleInput}
+                })} onChange={(e) => setMail(e.target.value)}
             />
             {errors?.mail?.type === "mail" && (
                 <p>Invalid email address</p>
@@ -56,7 +85,7 @@ export default function FormLogin() {
                 maxLength: 20,
                 pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
-                })} onChange={handleInput}
+                })} onChange={(e) => setPassword(e.target.value)}
             />
             {errors?.password?.type === "required" && 
                 <p>This field is required</p>

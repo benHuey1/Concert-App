@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mysql = require("mysql");
+const session = require("express-session");
+// const cookieParser = require("cookie-parser");
 
 const db = mysql.createPool({
     localhost: "localhost",
@@ -20,10 +22,90 @@ const db = mysql.createPool({
 
 app.use(express());
 
-app.use(cors());
+app.use(
+    cors({
+        origin: ["http://localhost:5173"],
+        method: ["POST", "GET"],
+        credentials: true,
+    })
+);
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(cookieParser());
+app.use(
+    session({
+        secret: "secret", // a secret key used to encrypt the session cookie
+        resave: false, // no saving if no modification (save storage and help performance )
+        saveUninitialized: false,
+        cookie: {
+            secure: false, // for http not https
+            maxAge: 1000 * 60, // now 1 minute ! 1 day = > 1000 * 60 * 60 * 24
+        },
+    })
+);
+app.get("/home", (req, res) => {
+    if (req.session.name) {
+        res.json({ valid: true, name: req.session.name });
+    } else {
+        res.json({ valid: false, name: "Mrs./Mr. Good Vibration" });
+    }
+});
+app.get("/my-account", (req, res) => {
+    if (req.session.name) {
+        res.json({ valid: true, name: req.session.name });
+    } else {
+        res.json({ valid: false });
+    }
+});
 
+app.post("/signup", (req, res) => {
+    // const values = [
+    //     req.body.name,
+    //     req.body.mail,
+    //     req.body.password,
+    //     req.body.status,
+    // ];
+    const name = req.body.name;
+    const mail = req.body.mail;
+    const password = req.body.password;
+    const status = req.body.status;
+    const sqlInsert =
+        "INSERT INTO users (name, mail, password, status) VALUES (?,?,?,?);";
+    db.query(sqlInsert, [name, mail, password, status], (err, result) => {
+        // db.query(sqlInsert, [values], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error inserting data into the database");
+        } else {
+            console.log("Successful insert");
+            res.send(result);
+        }
+        res.send(result);
+    });
+});
+
+app.post("/login", (req, res) => {
+    const mail = req.body.mail;
+    const password = req.body.password;
+    const sqlSelect = "SELECT * FROM users WHERE mail = ? and  password = ?";
+    db.query(sqlSelect, [mail, password], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error selecting data from the database");
+        }
+        if (result.length > 0) {
+            // console.log(result[0].id);
+            req.session.name = result[0].name;
+            const name = req.session.name;
+            // console.log(req.session.name);
+            res.json({ Login: true });
+        } else {
+            console.log("Not logged");
+            res.json({ Login: false });
+        }
+        // res.send(result);
+    });
+});
 app.get("/concerts", (req, res) => {
     const sqlSelect =
         "SELECT concerts.*,  artists.name AS artist, artists.picture AS artist_picture, style.name AS style, concert_halls.name AS concert_hall, concert_halls.city AS city, concert_halls.picture_inside AS concert_hall_picture FROM concerts JOIN artists ON concerts.artists_id = artists.id JOIN style ON artists.style_id = style.id JOIN concert_halls ON concerts.concert_halls_id = concert_halls.id";
@@ -61,28 +143,6 @@ app.get("/concert-halls", (req, res) => {
         res.send(results);
     });
 });
-
-app.post("/signup", (req, res) => {
-    const values = [
-        req.body.name,
-        req.body.mail,
-        req.body.password,
-        req.body.status,
-    ];
-    const sqlInsert =
-        "INSERT INTO users (name, mail, password, status) VALUES (?,?,?,?);";
-    db.query(sqlInsert, [values], (err, result) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send("Error inserting data into the database");
-        } else {
-            console.log("Successful insert");
-            res.send(result);
-        }
-        res.send(result);
-    });
-});
-
 app.get("/api/get", (req, res) => {
     const sqlSelect = "SELECT * FROM table_test";
     db.query(sqlSelect, (err, result) => {
@@ -101,14 +161,13 @@ app.post("/api/insert", (req, res) => {
     const sqlInsert =
         "INSERT INTO table_test (colonne_1, colonne_2) VALUES (?,?);";
     db.query(sqlInsert, [colonne1, colonne2], (err, result) => {
-        // if (err) {
-        //     console.log(err);
-        //     res.status(500).send("Error inserting data into the database");
-        // } else {
-        //     console.log("Successful insert");
-        //     res.send(result);
-        // }
-        res.send(result);
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error inserting data into the database");
+        } else {
+            console.log("Successful insert");
+            res.send(result);
+        }
     });
 });
 

@@ -1,17 +1,51 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import Login from "../Login-signup/Login";
 import "../Navbar/Navbar.css"
+import axios from "axios";
 
 export default function Home() {
+    const [name, setName] = useState('')
+    const navigate = useNavigate('')
+
     const styleLink =({ isActive }) => {
         return { 
             color: isActive ? '#000' : '#fff',
             height: '0px'
         }
     };
+
+    useEffect(()=>{
+        axios.get("http://localhost:3001/home")
+        .then( res => {
+            if (res.data.valid) {
+                setName(res.data.name)
+            } else {
+                setName(res.data.name)
+            }
+        })
+        .catch( err => console.log(err))
+    })
+
+    // const isConnected = async () =>{
+    //     try {
+    //         const response = await axios.post("http://localhost:3001/login", {
+    //             mail,
+    //             password,
+    //         });
+    //         if (response.data.Login) {
+    //             console.log(response.data);
+    //             navigate('/home');
+    //         } else {
+    //             alert("No record");
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
     // const [colonne_1, setColonne_1] = useState("");
     // const [colonne_2, setColonne_2] = useState("");
     // const [colonne1_2list, setColonne1_2list] = useState([]);
@@ -49,7 +83,7 @@ export default function Home() {
                 <NavLink to="/home/concert-halls" style={styleLink}>Concert Halls</NavLink>
             </nav>
             <Outlet />
-            {/* <Login /> */}
+            <h2>Welcome, {name} !</h2>
         {/* <h1>Hello World</h1>
     <label name="colonne-1">Colonne 1 (name): </label>
     <input

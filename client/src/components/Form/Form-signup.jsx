@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "../Button/Button";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 // import Checkbox from './Checkbox';
 
 export default function FormSignup() {
-    // const [name, setName] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [mail, setMail] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [mail, setMail] = useState('');
+    const [status, setStatus] = useState('');
+    
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
   defaultValues: {
@@ -17,7 +19,7 @@ export default function FormSignup() {
   mode: "onChange"
 });
     // const onSubmit = (data) => { alert(JSON.stringify(data)); };
-    console.log(watch("example")); // you can watch individual input by pass the name of the input
+    console.log(watch("status")); // you can watch individual input by pass the name of the input
 
     // const form = useForm({
     //     defaultValues: {
@@ -26,38 +28,52 @@ export default function FormSignup() {
     //     mode: "onChange"
     // });
     // const { register } = form;
-    const [values, setValues] = useState({
-        name: '',
-        mail: '',
-        password: '',
-        status: ''
-    })
+    // const [values, setValues] = useState({
+    //     name: '',
+    //     mail: '',
+    //     password: '',
+    //     status: ''
+    // })
     const navigate = useNavigate();
-    const handleInput = (event) => {
-        setValues(prev =>({...prev, [event.target.name] : [event.target.value]}))
-    }
-
-    const onSubmit = async (data) => {
-        try {
-          const response = await fetch("http://localhost:3001/signup", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-          });
+    // const handleInput = (event) => {
+    //     setValues(prev =>({...prev, [event.target.name] : [event.target.value]}))
+    // }
     
-          if (response.ok) {
-            console.log("Data inserted successfully");
-            navigate("/login");
-          } else {
-            throw new Error("Failed to insert data");
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      
+    
+    // useEffect (() => {
+    //     fetch("http://localhost:3001/concerts")
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         setConcerts(data);
+    //         // console.log(data);
+    //     })
+    // })
+   
+
+    const onSubmit = async () =>{
+            try {
+                const response = await axios.post("http://localhost:3001/signup", {
+                    name,
+                    mail,
+                    password,
+                    status,
+                });
+                console.log(response.data);
+                navigate('/login');
+            } catch (error) {
+                console.log(error);
+            }
+        // event.preventDefaut();
+        // axios.post("http://localhost:3001/signup", values)
+        // .then(res => 
+        //     {
+        //         console.log(res);                
+        //         setValues(res);
+        //         navigate('/login');
+        //     }
+        //     )
+        // .catch(err => console.log(err))
+    };
 
     return (
         <>
@@ -92,7 +108,7 @@ export default function FormSignup() {
                     minLength: 2,
                     maxLength: 20,
                     pattern: /^[A-Z_]+$/i
-                    })} onChange={handleInput}
+                    })} onChange={(e) => setName(e.target.value)}
                 />
                 {errors?.name?.type === "required" && 
                     <p>This field is required</p>
@@ -116,7 +132,7 @@ export default function FormSignup() {
                 {...register("mail", {
                     required: true,
                     pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                })} onChange={handleInput}
+                })} onChange={(e) => setMail(e.target.value)}
             />
             {errors?.mail?.type === "mail" && (
                 <p>Invalid email address</p>
@@ -136,7 +152,7 @@ export default function FormSignup() {
                 maxLength: 20,
                 pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
-                })} onChange={handleInput}
+                })} onChange={(e) => setPassword(e.target.value)}
             />
             {errors?.password?.type === "required" && 
                 <p>This field is required</p>
@@ -153,13 +169,13 @@ export default function FormSignup() {
             )}
             <label>
                 <div>
-                    <input type="radio" value="artist" {...register("status")} onChange={handleInput} />
+                    <input type="radio" value="artist" {...register("status")} onChange={(e) => setStatus(e.target.value)} />
                     I'm an Artist
                 </div>
             </label>
             <label>
                 <div>
-                    <input type="radio" value="public" {...register("status")} onChange={handleInput} />
+                    <input type="radio" value="public" {...register("status")} onChange={(e) => setStatus(e.target.value)} />
                     I'm a Public
                 </div>
             </label>
