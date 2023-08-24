@@ -16,6 +16,7 @@ export default function Home() {
             height: '0px'
         }
     };
+    axios.defaults.withCredentials = true;
 
     useEffect(()=>{
         axios.get("http://localhost:3001/home")
@@ -82,49 +83,9 @@ export default function Home() {
                 <NavLink to="/home/artists" style={styleLink}>Artists</NavLink>
                 <NavLink to="/home/concert-halls" style={styleLink}>Concert Halls</NavLink>
             </nav>
-            <Outlet />
             <h2>Welcome, {name} !</h2>
-        {/* <h1>Hello World</h1>
-    <label name="colonne-1">Colonne 1 (name): </label>
-    <input
-        type="text"
-        name="colonne-1"
-        onChange={(e) => {
-            setColonne_1(e.target.value);
-        }}
-    ></input>
-    <label name="colonne-2">Colonne 2 (password): </label>
-    <input
-        type="text"
-        name="colonne-2"
-        onChange={(e) => {
-            setColonne_2(e.target.value);
-        }}
-    ></input>
-    <button type="submit" onClick={submitColonne}>
-        Submit
-    </button>
-    <div> */}
-        {/* {colonne1_2list.map((val) => {
-            return (
-                <>
-                    <h2>
-                       ok
-                    </h2>
-                    <button>Update</button>
-                    <input type="text"></input>
-                    <button
-                        onClick={() => {
-                            deleteColonne(val.colonne_1);
-                        }}
-                    >
-                        Delete
-                    </button>
-                </>
-            );
-        })} */}
+            <Outlet />
 
-    {/* </div> */}
         </>
     );
 }

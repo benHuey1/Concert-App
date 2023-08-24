@@ -4,9 +4,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
-// import Checkbox from './Checkbox';
-
 export default function FormLogin() {
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,18 +19,19 @@ export default function FormLogin() {
     const navigate = useNavigate();
     axios.defaults.withCredentials = true;
    
-    // useEffect(()=>{
-    //     axios.get("http://localhost:3001/my-account")
-    //     .then( res => {
-    //         console.log(res);
-    //         if (res.data.valid) {
-    //             navigate('/home')
-    //         } else {
-    //             navigate('/login')
-    //         }
-    //     })
-    //     .catch( err => console.log(err))
-    // })
+    useEffect(()=>{
+        axios.get("http://localhost:3001/my-account")
+        .then( res => {
+            console.log(res);
+            if (res.data.valid) {
+                navigate('/');
+                location.reload();
+            } else {
+                navigate('/login')
+            }
+        })
+        .catch( err => console.log(err))
+    }, [])
 
     const onSubmit = async () =>{
         try {
@@ -44,7 +42,7 @@ export default function FormLogin() {
             if (response.data.Login) {
                 console.log(response.data);
                 console.log("Welcome, " + response.data.name);
-                navigate('/home');
+                navigate('/');
             } else {
                 alert("No record");
             }
@@ -100,10 +98,6 @@ export default function FormLogin() {
                 // eslint-disable-next-line react/no-unescaped-entities
                 <p>Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character.</p>
             )}
-            {/* {errors.password && (
-                // eslint-disable-next-line react/no-unescaped-entities
-              <p>Password is required and must be at least 8 characters long.</p>
-            )} */}
             <Button content="Log-In"/>
             <div>Not yet registered ? <a href="/signup">Sign-up</a></div>
         </form>

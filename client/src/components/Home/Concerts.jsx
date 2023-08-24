@@ -22,7 +22,7 @@ export default function Concerts() {
     
     return(
         <>
-        <h2>It's place Concert !</h2>
+        <h2>It's place Concert :</h2>
         <div className="concerts">
             {concerts.map((concert) => {
                 return (

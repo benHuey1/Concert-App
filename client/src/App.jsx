@@ -22,7 +22,7 @@ function App() {
     <div className='App'>
       <Navbar />
       <Routes>
-        <Route path='/home' element={<Home />} errorElement={<ErrorPage />} >
+        <Route path='/' element={<Home />} errorElement={<ErrorPage />} >
           <Route path="/home/concerts" element={<Concerts />} errorElement={<ErrorPage />} />
           <Route path="/home/artists" element={<Artists />} errorElement={<ErrorPage />} />
           <Route path="/home/concert-halls" element={<ConcertHalls />} errorElement={<ErrorPage />} />

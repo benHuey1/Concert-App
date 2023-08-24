@@ -51,7 +51,7 @@ export default function Artists() {
     return(
         <>
         <section>
-        <h2>It's place Artists !</h2>
+        <h2>It's place Artists :</h2>
         <div className="artists_book">
             <div>
                 <label htmlFor="">Search: </label>

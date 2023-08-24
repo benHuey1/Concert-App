@@ -77,56 +77,29 @@ export default function FormSignup() {
 
     return (
         <>
-        <form onSubmit={
-            handleSubmit(onSubmit)}>
-            {/* <label htmlFor="">
-                Name: 
-                <input type="text" value={name} id="" onChange={e => setName(e.target.value)} />
-            </label>
-            <label htmlFor="">
-                Mail: 
-                <input type="mail" value={name} id="" onChange={e => setMail(e.target.value)} />
-            </label>
-            <label htmlFor="">
-                Password: 
-                <input type="password" value={password} id="" onChange={e => setPassword(e.target.value)} />
-            </label>
-            <div className="radio">
-                <label>
-                    <input type="radio" value="artist" />
-                    I'm an Artist
-                </label>
-                <label>
-                    <input type="radio" value="public" />
-                    I'm a Public
-                </label>
-            </div> */}
-                <label>Name:</label>
-                <input type="text"
-                    {...register("name", {
-                    required: true,
-                    minLength: 2,
-                    maxLength: 20,
-                    pattern: /^[A-Z_]+$/i
-                    })} onChange={(e) => setName(e.target.value)}
-                />
-                {errors?.name?.type === "required" && 
-                    <p>This field is required</p>
-                }
-                {errors?.name?.type === "minLength" && (
-                    <p>First name cannot subceed 2 characters</p>
-                )}
-                {errors?.name?.type === "maxLength" && (
-                    <p>First name cannot exceed 20 characters</p>
-                )}
-                {errors?.name?.type === "pattern" && (
-                    // eslint-disable-next-line react/no-unescaped-entities
-                    <p>'_' & Alphabetical characters only</p>
-                )}
-                {/* {errors.name && (
-                    // eslint-disable-next-line react/no-unescaped-entities
-                  <p>Name must be between 2 and 20 characters long, no bumbers, '_' accepted</p>
-                )} */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <label>Name:</label>
+            <input type="text"
+                {...register("name", {
+                required: true,
+                minLength: 2,
+                maxLength: 20,
+                pattern: /^[A-Z_]+$/i
+                })} onChange={(e) => setName(e.target.value)}
+            />
+            {errors?.name?.type === "required" && 
+                <p>This field is required</p>
+            }
+            {errors?.name?.type === "minLength" && (
+                <p>First name cannot subceed 2 characters</p>
+            )}
+            {errors?.name?.type === "maxLength" && (
+                <p>First name cannot exceed 20 characters</p>
+            )}
+            {errors?.name?.type === "pattern" && (
+                // eslint-disable-next-line react/no-unescaped-entities
+                <p>'_' & Alphabetical characters only</p>
+            )}
             <label>Mail:</label>
             <input type="mail" 
                 {...register("mail", {
