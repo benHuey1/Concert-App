@@ -5,6 +5,7 @@ const cors = require("cors");
 const mysql = require("mysql");
 const session = require("express-session");
 // const cookieParser = require("cookie-parser");
+const bcrypt = require("bcrypt");
 
 const db = mysql.createPool({
     localhost: "localhost",
@@ -59,46 +60,63 @@ app.get("/my-account", (req, res) => {
 });
 
 app.post("/signup", (req, res) => {
-    // const values = [
-    //     req.body.name,
-    //     req.body.mail,
-    //     req.body.password,
-    //     req.body.status,
-    // ];
     const name = req.body.name;
     const mail = req.body.mail;
     const password = req.body.password;
     const status = req.body.status;
-    const sqlInsert =
-        "INSERT INTO users (name, mail, password, status) VALUES (?,?,?,?);";
-    db.query(sqlInsert, [name, mail, password, status], (err, result) => {
-        // db.query(sqlInsert, [values], (err, result) => {
+
+    const saltRounds = 10;
+    bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
         if (err) {
             console.log(err);
-            res.status(500).send("Error inserting data into the database");
+            res.status(500).send("Error hashing password");
         } else {
-            console.log("Successful insert");
-            res.send(result);
+            const sqlInsert =
+                "INSERT INTO users (name, mail, password, status) VALUES (?,?,?,?);";
+            db.query(
+                sqlInsert,
+                [name, mail, hashedPassword, status],
+                (err, result) => {
+                    // db.query(sqlInsert, [values], (err, result) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send(
+                            "Error inserting data into the database"
+                        );
+                    } else {
+                        console.log("Successful insert");
+                        res.send(result);
+                    }
+                    // res.send(result);
+                }
+            );
         }
-        res.send(result);
     });
 });
 
 app.post("/login", (req, res) => {
     const mail = req.body.mail;
     const password = req.body.password;
-    const sqlSelect = "SELECT * FROM users WHERE mail = ? and  password = ?";
-    db.query(sqlSelect, [mail, password], (err, result) => {
+
+    const sqlSelect = "SELECT * FROM users WHERE mail = ?";
+    db.query(sqlSelect, [mail], (err, result) => {
         if (err) {
             console.log(err);
             res.status(500).send("Error selecting data from the database");
         }
         if (result.length > 0) {
             // console.log(result[0].id);
-            req.session.name = result[0].name;
-            const name = req.session.name;
-            // console.log(req.session.name);
-            res.json({ Login: true });
+            const hashedPassword = result[0].password;
+            const isPasswordValid = bcrypt.compare(password, hashedPassword);
+            if (isPasswordValid) {
+                req.session.name = result[0].name;
+                const name = req.session.name;
+                // console.log(req.session.name);
+                res.json({ Login: true });
+            } else {
+                console.log("Invalid password");
+                res.json({ Login: false });
+            }
         } else {
             console.log("Not logged");
             res.json({ Login: false });

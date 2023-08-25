@@ -122,7 +122,7 @@ export default function FormSignup() {
                 {...register("password", {
                 required: true,
                 minLength: 8,
-                maxLength: 20,
+                maxLength: 200,
                 pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 
                 })} onChange={(e) => setPassword(e.target.value)}
@@ -134,7 +134,7 @@ export default function FormSignup() {
                 <p>Password cannot subceed 8 characters</p>
             )}
             {errors?.password?.type === "maxLength" && (
-                <p>Password cannot exceed 20 characters</p>
+                <p>Password is too long</p>
             )}
             {errors?.password?.type === "pattern" && (
                 // eslint-disable-next-line react/no-unescaped-entities

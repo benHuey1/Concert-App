@@ -53,6 +53,9 @@
 .concerts_card_cart img {
     width: 100%;
 }
+.concerts_card_infos {
+  border-right: dotted;
+}
 .concerts_card_infos:hover .concerts_card_infos_plus_icon {
     display: block;
     cursor: pointer;

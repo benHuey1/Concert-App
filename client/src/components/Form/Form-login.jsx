@@ -25,7 +25,7 @@ export default function FormLogin() {
             console.log(res);
             if (res.data.valid) {
                 navigate('/');
-                location.reload();
+                // location.reload();
             } else {
                 navigate('/login')
             }
