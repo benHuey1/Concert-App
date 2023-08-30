@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
             <div className="footer_nav_copy">
                 <nav className="footer_navbar">
-                    <NavLink  to="/home" className={"nav_link"}>Home</NavLink>
+                    <NavLink  to="/" className={"nav_link"}>Home</NavLink>
                     <NavLink  to="/contact" className={"nav_link"}>Contact</NavLink>
                     <NavLink  to="/my-account" className={"nav_link"}>My Account</NavLink>
                 </nav>
