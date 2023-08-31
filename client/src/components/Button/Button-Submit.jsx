@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import "./Button.css";
 
-export default function Button({content}) {
+export default function ButtonSubmit({content}) {
     return (
         <input className="button-submit" type="submit" value={content}/>
     );
 }
 
-Button.propTypes = {
+ButtonSubmit.propTypes = {
     content: PropTypes.string.isRequired,
   };

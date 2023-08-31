@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css"
 import axios from "axios";
+import Modal from "../Modal/Modal";
 
 export default function Navbar() {
     
@@ -55,6 +56,7 @@ export default function Navbar() {
             {isLoggedIn ? (
                 <NavLink to="/" className={"nav_link"} onClick={handleLogout}>Logout</NavLink>
             ) : null}
+            <Modal content="Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content "/>
         </nav>
         </>
     )

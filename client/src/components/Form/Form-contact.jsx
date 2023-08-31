@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "../Button/Button";
 import { useForm } from "react-hook-form";
+import ButtonSubmit from "../Button/Button-Submit";
 
 export default function FormContact() {
     // const [name, setName] = useState('');
@@ -113,7 +113,7 @@ export default function FormContact() {
                     // eslint-disable-next-line react/no-unescaped-entities
                     <p>Text must be between 2 and 200 characters long, spaces and ':()' are allowed</p>
                 )}
-                <Button content="Submit"/>
+                <ButtonSubmit content="Submit"/>
             </form>
         {/* <form className="form" action="" method="post">
             <label htmlFor="">

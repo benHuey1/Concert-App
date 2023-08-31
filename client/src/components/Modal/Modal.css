@@ -1,0 +1,31 @@
+.modal {
+    z-index: 1;
+    position: absolute;
+    top: 18vh;
+    right: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    background-color: #fff;
+    width: 400px;
+    min-height: 200px;
+    max-height: 80vh;
+    overflow: auto;
+    border: 2px solid #000;
+    border-radius: 15px 0px 15px 15px;
+    padding: 0px 5px 5px;
+}
+.modal_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.show{
+    transform: translate(0px);
+}
+.hide{
+    transform: translate(415px);
+    background-color: violet;
+}
