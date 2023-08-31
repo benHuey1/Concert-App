@@ -13,8 +13,10 @@ Node.js, MySQL
 
 ## Features
 
-- Responsive
-- Authentication 
-- Authorization
-- Cart
-- Contact form
+- Responsive ⚠️
+- Authentication ✅
+- Authorization ⚠️
+- Cart ⚠️
+- Contact form ✅
+- Hashed password ✅
+- API ✅
