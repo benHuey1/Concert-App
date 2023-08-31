@@ -8,7 +8,7 @@ The use experience is divided into 2 parts :
 - Public part : the user can signup as a public and add some concert event to his own cart. 🛒
 ## Tech.
 
-[REACT](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/60px-React-icon.svg.png)
+![REACT](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/60px-React-icon.svg.png)
 Node.js, MySQL
 
 ## Features
