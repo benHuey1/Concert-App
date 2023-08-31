@@ -39,11 +39,12 @@ app.use(
         resave: false, // no saving if no modification (save storage and help performance )
         saveUninitialized: false,
         cookie: {
-            secure: false, // for http not https
-            maxAge: 1000 * 60, // now 1 minute ! 1 day = > 1000 * 60 * 60 * 24
+            secure: false, // "false" for http, "true" https
+            maxAge: 1000 * 60 * 60 * 24, // 1000 * 60 1 minute ! 1 day = > 1000 * 60 * 60 * 24
         },
     })
 );
+
 app.get("/home", (req, res) => {
     if (req.session.name) {
         res.json({ valid: true, name: req.session.name });
@@ -106,24 +107,41 @@ app.post("/login", (req, res) => {
         }
         if (result.length > 0) {
             // console.log(result[0].id);
+            console.log(result[0].password);
+            console.log(req.body.password);
             const hashedPassword = result[0].password;
-            const isPasswordValid = bcrypt.compare(password, hashedPassword);
+            const isPasswordValid = bcrypt.compareSync(
+                password,
+                hashedPassword
+            );
             if (isPasswordValid) {
                 req.session.name = result[0].name;
                 const name = req.session.name;
                 // console.log(req.session.name);
-                res.json({ Login: true });
+                res.json({ login: true, name: result[0].name });
             } else {
                 console.log("Invalid password");
-                res.json({ Login: false });
+                res.json({ login: false, message: "Invalid password" });
             }
         } else {
             console.log("Not logged");
-            res.json({ Login: false });
+            res.json({ login: false });
         }
         // res.send(result);
     });
 });
+app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error logout");
+        } else {
+            res.clearCookie("connect.sid");
+            res.json({ logout: true });
+        }
+    });
+});
+
 app.get("/concerts", (req, res) => {
     const sqlSelect =
         "SELECT concerts.*,  artists.name AS artist, artists.picture AS artist_picture, style.name AS style, concert_halls.name AS concert_hall, concert_halls.city AS city, concert_halls.picture_inside AS concert_hall_picture FROM concerts JOIN artists ON concerts.artists_id = artists.id JOIN style ON artists.style_id = style.id JOIN concert_halls ON concerts.concert_halls_id = concert_halls.id";

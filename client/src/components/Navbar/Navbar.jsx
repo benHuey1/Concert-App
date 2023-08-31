@@ -15,11 +15,11 @@ export default function Navbar() {
     // };
     axios.defaults.withCredentials = true;
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const navigate = useNavigate();
     useEffect(()=>{
         axios.get("http://localhost:3001/home")
         .then( res => {
-            console.log(res);
+            // console.log(res);
             if (res.data.valid) {
                 // console.log(res.data.valid);
                 setIsLoggedIn(true);
@@ -31,9 +31,16 @@ export default function Navbar() {
         .catch( err => console.log(err))
     })
 
-    const onclickLogout = () => {
-        console.log("Wanna log out");
-    }
+    const handleLogout = () => {
+        axios.get("http://localhost:3001/logout")
+            .then( res => {
+                console.log(res.data.logout);
+            })
+                .catch(err => {
+                    console.log(err);
+                })
+};
+
 
     return (
         <>
@@ -46,7 +53,7 @@ export default function Navbar() {
                 <NavLink to="/login" className={"nav_link"}>Login</NavLink>
              )}
             {isLoggedIn ? (
-                <NavLink to="/" className={"nav_link"} onClick={onclickLogout}>Logout</NavLink>
+                <NavLink to="/" className={"nav_link"} onClick={handleLogout}>Logout</NavLink>
             ) : null}
         </nav>
         </>

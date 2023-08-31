@@ -29,7 +29,7 @@ export default function ConcertHalls() {
     return(
         <>
         <section>
-        <h2>It's place Concert Halls :</h2>
+        <h2>It's the place for concert halls :</h2>
         <div className="concerthalls-book">
             <div className="searchbar">
                 <label htmlFor="">Search: </label>
