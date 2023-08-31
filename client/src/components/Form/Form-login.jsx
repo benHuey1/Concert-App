@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Button from "../Button/Button";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ButtonSubmit from "../Button/Button-Submit";
 
 export default function FormLogin() {
     const [mail, setMail] = useState('');
@@ -103,7 +103,7 @@ export default function FormLogin() {
                 // eslint-disable-next-line react/no-unescaped-entities
                 <p>Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character.</p>
             )}
-            <Button content="Log-In"/>
+            <ButtonSubmit content="Log-In"/>
             <div>Not yet registered ? <a href="/signup">Sign-up</a></div>
         </form>
         </>
