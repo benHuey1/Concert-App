@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import "./Concerts.css"
 
 export default function Concerts() {
@@ -21,12 +21,26 @@ export default function Concerts() {
     };
     const currentDate = formatDate(new Date());
 
-    const handleAddConcertToCart = (concert) => {
-        if (selectedConcert && selectedConcert.id === concert.id) {
-            setSelectedConcert(null);
-        } else {
-            setSelectedConcert(concert);
-        }
+    const handleAddConcertToCart = (e) => {
+        // if (selectedConcert && selectedConcert.id === concert.id) {
+        //     setSelectedConcert(null);
+        //     console.log(`${concert.id}${concert.name}`);
+        // } else {
+        //     setSelectedConcert(concert);
+        // }
+        console.log(e.target.id);
+        const concertId = e.target.id;
+        const ID = concertId.split('-').pop();
+        console.log(ID);
+        const concertAdded = concerts.find((concert) => concert.id == ID);
+            if (concertAdded){
+                console.log("ID is the same, you can use it");
+                console.log(concertAdded);
+            } else {                
+                console.log("There is nothing");
+            }
+        // console.log(concerts);
+        // console.log(concertAdding);
     }
 
     // const getConcert = (concert) => {
@@ -60,7 +74,7 @@ export default function Concerts() {
                                 {/* <div>Style : {concert.style}</div> */}
                                 <div className="concerts_card_infos_ticket">{concert.ticket_cost}€</div>
                             </div>
-                            <div className="concerts_card_cart"><img src="/ticket.svg" id={`button-add-${concert.id}`} /*onClick={handleAddConcertToCart(concert)}*/ alt="" /></div>
+                            <div className="concerts_card_cart"><img src="/ticket.svg" id={`button-add-${concert.id}`} onClick={handleAddConcertToCart} alt="" /></div>
                         </div>
                         <div className="arc-bottom-l"></div>
                         <div className="arc-bottom-r"></div>

@@ -95,15 +95,6 @@ app.post("/signup", (req, res) => {
     });
 });
 
-const verifyUser = (req, res, next) => {
-    const cookie = req.session.cookie;
-    if (!cookie) {
-        res.json({ message: "No cookie" });
-    } else {
-        res.json;
-    }
-};
-
 app.post("/login", (req, res) => {
     const mail = req.body.mail;
     const password = req.body.password;
