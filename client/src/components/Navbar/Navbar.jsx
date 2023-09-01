@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css"
 import axios from "axios";
 import Modal from "../Modal/Modal";
@@ -40,8 +40,10 @@ export default function Navbar() {
                 .catch(err => {
                     console.log(err);
                 })
-};
+    };
 
+    const location = useLocation();
+    const concert = location.state?.concert;
 
     return (
         <>
@@ -56,7 +58,15 @@ export default function Navbar() {
             {isLoggedIn ? (
                 <NavLink to="/" className={"nav_link"} onClick={handleLogout}>Logout</NavLink>
             ) : null}
-            <Modal content="Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content Future Content "/>
+            
+                <Modal content={concert &&(
+                    <>test
+                        <div>{concert.artist}</div>
+                        <div>{concert.city}</div>
+                        <div>{concert.date}</div>
+                        <div>{concert.ticket_cost}</div>
+                    </>
+                )}/>
         </nav>
         </>
     )
