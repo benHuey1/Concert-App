@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import "./Concerts.css"
+import { useNavigate } from "react-router-dom";
 
 export default function Concerts() {
     const [ concerts, setConcerts] = useState([]);
@@ -21,38 +22,23 @@ export default function Concerts() {
     };
     const currentDate = formatDate(new Date());
 
+    const navigate = useNavigate();
     const handleAddConcertToCart = (e) => {
-        // if (selectedConcert && selectedConcert.id === concert.id) {
-        //     setSelectedConcert(null);
-        //     console.log(`${concert.id}${concert.name}`);
-        // } else {
-        //     setSelectedConcert(concert);
-        // }
         console.log(e.target.id);
         const concertId = e.target.id;
         const ID = concertId.split('-').pop();
-        console.log(ID);
         const concertAdded = concerts.find((concert) => concert.id == ID);
             if (concertAdded){
                 console.log("ID is the same, you can use it");
                 console.log(concertAdded);
+                navigate({
+                    pathname: "/home/concerts",
+                    state: { concert: concertAdded}
+                });
             } else {                
-                console.log("There is nothing");
+                return console.log("There is nothing");
             }
-        // console.log(concerts);
-        // console.log(concertAdding);
     }
-
-    // const getConcert = (concert) => {
-    //     if (selectedConcert && selectedConcert.id === concert.id) {
-    //         return (
-    //             <p>{concert.id} + {concert.artist} + {concert.city} + {formatDate(concert.date_hour)}</p>
-    //         )
-    //     } else {
-    //         return(console.log("Nothing to add"))
-    //     }
-    // }
-    
     return(
         <>
         <h2>It's the place for concerts :</h2>
@@ -60,7 +46,6 @@ export default function Concerts() {
             {concerts.map((concert) => {
                 return (
                     <>
-                    {/* <div onChange={getConcert(concert)}></div> */}
                     <div className="concerts_card" key={concert.index} id={`concert-${concert.id}`}>
                         <div className="arc-top-l"></div>
                         <div className="arc-top-r"></div>
@@ -68,7 +53,7 @@ export default function Concerts() {
                             <div className="concerts_card_date">{formatDate(concert.date_hour)}</div>
                             <div className="concerts_card_infos">
                                 <img className="concerts_card_infos_plus_icon" id={`img-plus-${concert.id}`} src="/logo-plus.svg" alt="plus-icon" />
-                                <div className="cconcerts_card_infos_artist" >{concert.artist}</div>
+                                <div className="concerts_card_infos_artist" >{concert.artist}</div>
                                 {/* <div>In the famous concert hall {concert.concert_hall}</div> */}
                                 <div className="concerts_card_infos_city">{concert.city}</div>
                                 {/* <div>Style : {concert.style}</div> */}

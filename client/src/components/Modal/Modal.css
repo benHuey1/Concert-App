@@ -1,6 +1,6 @@
 .modal {
     z-index: 1;
-    position: absolute;
+    position: fixed;
     top: 18vh;
     right: 0px;
     display: flex;
@@ -14,7 +14,9 @@
     overflow: auto;
     border: 2px solid #000;
     border-radius: 15px 0px 15px 15px;
+    box-shadow: -10px 10px 30px -10px rgba(0,0,0,0.75);
     padding: 0px 5px 5px;
+    transition: all 1s ease-out;
 }
 .modal_content {
     display: flex;
@@ -23,9 +25,11 @@
     align-content: center;
 }
 .show{
-    transform: translate(0px);
+    transform: translateX(0);
 }
 .hide{
-    transform: translate(415px);
-    background-color: violet;
+    transform: translateX(105%);
+    background-color: #a44bbd;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    filter: blur(10px);
 }
