@@ -33,6 +33,15 @@
 .nav_link:hover {
     color: #605e5e;
 }
+.modal_content_item{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    gap: 20px;
+    border-bottom: 3px solid #00000048;
+}
 
 @media only screen and (min-width: 768px) {
 

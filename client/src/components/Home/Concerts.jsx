@@ -1,10 +1,12 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useContext } from "react"
 import "./Concerts.css"
 import { useNavigate } from "react-router-dom";
+import { ConcertContext } from "../Modal/concert-context";
 
 export default function Concerts() {
     const [ concerts, setConcerts] = useState([]);
-    const [selectedConcert, setSelectedConcert] = useState(null);
+    const [selectedConcert, setSelectedConcert] = useState([]);
+    const  { setConcertCart } = useContext(ConcertContext);
 
     useEffect (() => {
         fetch("http://localhost:3001/concerts")
@@ -31,10 +33,12 @@ export default function Concerts() {
             if (concertAdded){
                 console.log("ID is the same, you can use it");
                 console.log(concertAdded);
-                navigate({
-                    pathname: "/home/concerts",
-                    state: { concert: concertAdded}
-                });
+                // navigate({
+                //     pathname: "/home/concerts",
+                //     state: { concert: concertAdded}
+                // });
+                setConcertCart((prevConcert) => [...prevConcert, concertAdded]);
+                // setSelectedConcert([...selectedConcert, setConcert])
             } else {                
                 return console.log("There is nothing");
             }

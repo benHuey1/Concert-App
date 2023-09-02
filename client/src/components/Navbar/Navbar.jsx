@@ -1,8 +1,11 @@
-import { React, useEffect, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css"
 import axios from "axios";
 import Modal from "../Modal/Modal";
+import { ConcertContext } from "../Modal/concert-context";
+import ButtonSTD from "../Button/Button-std";
+import ButtonSubmit from "../Button/Button-Submit";
 
 export default function Navbar() {
     
@@ -16,7 +19,8 @@ export default function Navbar() {
     // };
     axios.defaults.withCredentials = true;
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    const { concertCart } = useContext(ConcertContext);
     useEffect(()=>{
         axios.get("http://localhost:3001/home")
         .then( res => {
@@ -42,8 +46,16 @@ export default function Navbar() {
                 })
     };
 
-    const location = useLocation();
-    const concert = location.state?.concert;
+    // const location = useLocation();
+    // const concert = location.state?.concert;
+    const handleDelete = (e) => {
+        const cartId = e.target.id;
+        console.log(cartId);
+        const ID = cartId.split('-').pop();
+        console.log(`cart-${ID}`);
+        const cartToRemove = document.getElementById(`cart-${ID}`);
+        cartToRemove.remove();
+    }
 
     return (
         <>
@@ -59,12 +71,17 @@ export default function Navbar() {
                 <NavLink to="/" className={"nav_link"} onClick={handleLogout}>Logout</NavLink>
             ) : null}
             
-                <Modal content={concert &&(
-                    <>test
-                        <div>{concert.artist}</div>
-                        <div>{concert.city}</div>
-                        <div>{concert.date}</div>
-                        <div>{concert.ticket_cost}</div>
+                <Modal content={concertCart.length > 0 && (
+                    <>
+                        {concertCart.map((concert) => (
+                            <div key={concert.id} id={`cart-${concert.id}`} className="modal_content_item">
+                                <div>{concert.artist}</div>
+                                <div>{concert.city}</div>
+                                <div>{concert.date}</div>
+                                <div>{concert.ticket_cost}€</div>
+                                <ButtonSubmit id={`delete-${concert.id}`} content="Delete" onclick={handleDelete}/>
+                            </div>
+                        ))}
                     </>
                 )}/>
         </nav>

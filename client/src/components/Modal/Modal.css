@@ -7,6 +7,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-content: center;
+    line-height: 30px;
     background-color: #fff;
     width: 400px;
     min-height: 200px;
@@ -16,6 +17,7 @@
     border-radius: 15px 0px 15px 15px;
     box-shadow: -10px 10px 30px -10px rgba(0,0,0,0.75);
     padding: 0px 5px 5px;
+    gap: 10px;
     transition: all 1s ease-out;
 }
 .modal_content {
@@ -23,6 +25,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    gap: 10px;
 }
 .show{
     transform: translateX(0);

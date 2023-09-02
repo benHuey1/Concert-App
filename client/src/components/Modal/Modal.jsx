@@ -18,7 +18,7 @@ export default function Modal ({content}) {
             <ButtonSTD content="CART" onclick={showModal}/>
             <div className={showHideStyle} /*{{(show) ? 'modal show' : 'modal hide'}}*/>
                 <ButtonSTD content="->" backImage={"/logo-plus"} onclick={hideModal}/>
-                <div className="modal_content" open>{content}</div>
+                <div className="modal_content" >{content}</div>
             </div>
         </>
     )
