@@ -3,7 +3,7 @@ import "./Button.css";
 
 export default function ButtonSTD({content, onclick, backImage}) {
     return (
-        <button className="button" type="button" value={content} onClick={onclick} src={backImage}/>
+        <button className="button_std" type="button" value={content} onClick={onclick} src={backImage}/>
     );
 }
 

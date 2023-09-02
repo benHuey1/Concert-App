@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./My-Account.css"
 import { useNavigate } from "react-router-dom";
+import ButtonSubmit from "../Button/Button-Submit";
 
 export default function MyAccount() {
     const [name, setName] = useState('')
@@ -60,7 +61,7 @@ export default function MyAccount() {
                     value={colonne2}
                     onChange={(e) => setColonne2(e.target.value)}
                 />
-                <button type="submit">Submit</button>
+                <ButtonSubmit content="Submit"/>
             </form>
             </div>
         </section>
