@@ -73,6 +73,7 @@ export default function Navbar() {
             
                 <Modal content={concertCart.length > 0 && (
                     <>
+                    <h2>Your Cart 🎵</h2>
                         {concertCart.map((concert) => (
                             <div key={concert.id} id={`cart-${concert.id}`} className="modal_content_item">
                                 <div>{concert.artist}</div>
