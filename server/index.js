@@ -179,6 +179,25 @@ app.get("/concert-halls", (req, res) => {
         res.send(results);
     });
 });
+app.post("/contact", (req, res) => {
+    const name = req.body.name;
+    const mail = req.body.mail;
+    const object = req.body.object;
+    const message = req.body.message;
+
+    const sqlInsert =
+        "INSERT INTO contact_form (name, mail, object, message) VALUES (?,?,?,?);";
+    db.query(sqlInsert, [name, mail, object, message], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error inserting data into the database");
+        } else {
+            console.log("Successful insert");
+            res.send(result);
+        }
+    });
+});
+
 app.get("/api/get", (req, res) => {
     const sqlSelect = "SELECT * FROM table_test";
     db.query(sqlSelect, (err, result) => {

@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./My-Account.css"
 import { useNavigate } from "react-router-dom";
 import ButtonSubmit from "../Button/Button-Submit";
+import { ConcertContext } from "../Modal/concert-context";
 
 export default function MyAccount() {
     const [name, setName] = useState('')
     const navigate = useNavigate('')
-    
+    const { concertCart } = useContext(ConcertContext);
+
     axios.defaults.withCredentials = true;
     
 // --------------------------------------------TEST----------------------------------------------------
@@ -50,19 +52,9 @@ export default function MyAccount() {
         <section>
             <h2>Hello {name}, it's your place !</h2>
             <div className="My-account">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={colonne1}
-                    onChange={(e) => setColonne1(e.target.value)}
-                />
-                <input
-                    type="text"
-                    value={colonne2}
-                    onChange={(e) => setColonne2(e.target.value)}
-                />
-                <ButtonSubmit content="Submit"/>
-            </form>
+            <div>
+                
+            </div>
             </div>
         </section>
         </>

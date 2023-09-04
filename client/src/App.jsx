@@ -15,6 +15,7 @@ import Footer from './components/Footer/Footer';
 import Login from './components/Login-signup/Login';
 import Signup from './components/Login-signup/Signup';
 import { ConcertProvider } from './components/Modal/concert-context';
+import LandingPage from './components/Home/Landing-page';
 
 function App() {
 
@@ -24,7 +25,8 @@ function App() {
       <div className='App'>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Home />} errorElement={<ErrorPage />} >
+          <Route path='' element={<Home />} errorElement={<ErrorPage />} >
+            <Route path="/" element={<LandingPage />} errorElement={<ErrorPage />} />
             <Route path="/home/concerts" element={<Concerts />} errorElement={<ErrorPage />} />
             <Route path="/home/artists" element={<Artists />} errorElement={<ErrorPage />} />
             <Route path="/home/concert-halls" element={<ConcertHalls />} errorElement={<ErrorPage />} />

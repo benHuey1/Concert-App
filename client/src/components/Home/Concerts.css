@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    background-color: beige;
+    background-color: #ffd79d;
     border: 2px solid #000;
     padding:20px 0px;
 }

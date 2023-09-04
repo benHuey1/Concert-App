@@ -1,7 +1,7 @@
 .modal {
     z-index: 1;
     position: fixed;
-    top: 18vh;
+    top: 0vh;
     right: 0px;
     display: flex;
     flex-direction: row;

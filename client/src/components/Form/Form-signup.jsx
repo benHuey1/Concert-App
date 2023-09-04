@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../Button/Button-Submit";
+import ButtonSubmit from "../Button/Button-Submit";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -153,7 +153,7 @@ export default function FormSignup() {
                 </div>
             </label>
             <pre>{JSON.stringify(watch(), null, 2)}</pre>
-            <Button content="Sign-Up"/>
+            <ButtonSubmit content="Sign-Up"/>
             <div>Already registered ? <a href="/login">Log-in</a></div>
         </form>
         </>

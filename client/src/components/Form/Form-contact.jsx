@@ -1,17 +1,35 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ButtonSubmit from "../Button/Button-Submit";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function FormContact() {
-    // const [name, setName] = useState('');
-    // const [object, setObject] = useState('');
-    // const [message, setMessage] = useState('');
-    // const [mail, setMail] = useState('');
+    const [name, setName] = useState('');
+    const [object, setObject] = useState('');
+    const [message, setMessage] = useState('');
+    const [mail, setMail] = useState('');
     
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = (data) => { alert(JSON.stringify(data)); };
-  console.log(watch("example")); // you can watch individual input by pass the name of the input
-
+  const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    defaultValues: {
+      status: "world"
+    },
+    mode: "onChange"
+  });
+  const onSubmit = async () => {
+    try {
+        const response = await axios.post("http://localhost:3001/contact", {
+            name,
+            mail,
+            object,
+            message,
+        });
+        console.log(response.data);
+        location.reload();
+    } catch (error) {
+        console.log(error);
+    }
+  }
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -22,7 +40,7 @@ export default function FormContact() {
                     minLength: 2,
                     maxLength: 20,
                     pattern: /^[A-Z_]+$/i
-                    })}
+                    })} onChange={(e) =>setName(e.target.value)}
                 />
                 {errors?.name?.type === "required" && 
                     <p>This field is required</p>
@@ -46,7 +64,7 @@ export default function FormContact() {
                     {...register("mail", {
                         required: true,
                         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                    })} 
+                    })} onChange={(e) =>setMail(e.target.value)}
                 />
                 {errors?.mail?.type === "mail" && (
                     <p>Invalid email address</p>
@@ -68,17 +86,17 @@ export default function FormContact() {
                     required: true,
                     minLength: 2,
                     maxLength: 50,
-                    pattern: /^[A-Z]+$/i
-                    })}
+                    pattern: /^[A-Z\s]+$/i
+                    })} onChange={(e) =>setObject(e.target.value)}
                 />
                 {errors?.object?.type === "required" && 
                     <p>This field is required</p>
                 }
                 {errors?.object?.type === "minLength" && (
-                    <p>First name cannot subceed 2 characters</p>
+                    <p>Object cannot subceed 2 characters</p>
                 )}
                 {errors?.object?.type === "maxLength" && (
-                    <p>First name cannot exceed 20 characters</p>
+                    <p>Object cannot exceed 50 characters</p>
                 )}
                 {errors?.object?.type === "pattern" && (
                     // eslint-disable-next-line react/no-unescaped-entities
@@ -86,66 +104,35 @@ export default function FormContact() {
                 )}
                 {errors.object && (
                     // eslint-disable-next-line react/no-unescaped-entities
-                  <p>Object must be between 2 and 20 characters long, no numbers</p>
+                  <p>Object must be between 2 and 50 characters long, no numbers, no special characters</p>
                 )}
                 <label>Message:</label>
                 <textarea type="textarea" placeholder="Describe your needs" 
-                    {...register("textarea", { 
+                    {...register("message", { 
                         required: true,
                         minLength: 2,
                         maxLength: 200,
-                        pattern: /^[A-Za-z0-9\s:()]+$/i
-                    })} />
-                {errors?.textarea?.type === "required" && 
+                        pattern: /^[A-Za-z0-9\s:()',.!?]+$/i
+                    })} onChange={(e) =>setMessage(e.target.value)} />
+                {errors?.message?.type === "required" && 
                     <p>This field is required</p>
                 }
-                {errors?.textarea?.type === "minLength" && (
+                {errors?.message?.type === "minLength" && (
                     <p>First name cannot subceed 2 characters</p>
                 )}
-                {errors?.textarea?.type === "maxLength" && (
+                {errors?.message?.type === "maxLength" && (
                     <p>First name cannot exceed 200 characters</p>
                 )}
-                {errors?.textarea?.type === "pattern" && (
+                {errors?.message?.type === "pattern" && (
                     // eslint-disable-next-line react/no-unescaped-entities
                     <p>Only alphanumeric characters, spaces and ":()" are allowed</p>
                 )}
-                {errors.textarea && (
+                {errors.message && (
                     // eslint-disable-next-line react/no-unescaped-entities
                     <p>Text must be between 2 and 200 characters long, spaces and ':()' are allowed</p>
                 )}
                 <ButtonSubmit content="Submit"/>
-            </form>
-        {/* <form className="form" action="" method="post">
-            <label htmlFor="">
-                Name: 
-                <input type="mail" value={name} id="" onChange={e => setMail(e.target.value)} />
-            </label>
-            <label htmlFor="">
-                Mail: 
-                <input type="text" value={name} id="" onChange={e => setName(e.target.value)} />
-            </label>
-            <label htmlFor="">
-                Object of the message: 
-                <input type="text" value={object} id="" onChange={e => setObject(e.target.value)} />
-            </label>
-            <label htmlFor="">
-                Message: 
-                <textarea type="text" value={message} id="" onChange={e => setMessage(e.target.value)} cols="30" rows="10" />
-            </label>
-            <Button content="Submit"/>
-            {name !== '' &&
-                <p>Your name is {name}.</p>
-            }
-            {mail !== '' &&
-                <p>Your name is {mail}.</p>
-            }
-            {object !== '' &&
-                <p>The object of the message is {object}.</p>
-            }
-            {message !== '' &&
-                <p>Your message is {message}.</p>
-            }
-        </form> */}
+            </form> 
         </>
     )
 }
