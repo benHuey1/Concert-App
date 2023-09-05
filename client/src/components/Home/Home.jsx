@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import "../Navbar/Navbar.css"
 import axios from "axios";
 import "./Home.css"
+import "../../App.scss"
 
 export default function Home() {
 

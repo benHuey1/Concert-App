@@ -3,7 +3,7 @@ import ButtonSubmit from "../Button/Button-Submit";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import Checkbox from './Checkbox';
+import "../../App.scss"
 
 export default function FormSignup() {
     const [name, setName] = useState('');
@@ -11,44 +11,13 @@ export default function FormSignup() {
     const [mail, setMail] = useState('');
     const [status, setStatus] = useState('');
     
-
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({
-  defaultValues: {
-    status: "world"
-  },
-  mode: "onChange"
-});
-    // const onSubmit = (data) => { alert(JSON.stringify(data)); };
-    console.log(watch("status")); // you can watch individual input by pass the name of the input
-
-    // const form = useForm({
-    //     defaultValues: {
-    //         status: "world"
-    //     },
-    //     mode: "onChange"
-    // });
-    // const { register } = form;
-    // const [values, setValues] = useState({
-    //     name: '',
-    //     mail: '',
-    //     password: '',
-    //     status: ''
-    // })
+    const { register, handleSubmit,  formState: { errors } } = useForm({
+        defaultValues: {
+            status: "world"
+        },
+        mode: "onChange"
+    });
     const navigate = useNavigate();
-    // const handleInput = (event) => {
-    //     setValues(prev =>({...prev, [event.target.name] : [event.target.value]}))
-    // }
-    
-    
-    // useEffect (() => {
-    //     fetch("http://localhost:3001/concerts")
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //         setConcerts(data);
-    //         // console.log(data);
-    //     })
-    // })
-   
 
     const onSubmit = async () =>{
             try {
@@ -58,21 +27,10 @@ export default function FormSignup() {
                     password,
                     status,
                 });
-                console.log(response.data);
                 navigate('/login');
             } catch (error) {
                 console.log(error);
             }
-        // event.preventDefaut();
-        // axios.post("http://localhost:3001/signup", values)
-        // .then(res => 
-        //     {
-        //         console.log(res);                
-        //         setValues(res);
-        //         navigate('/login');
-        //     }
-        //     )
-        // .catch(err => console.log(err))
     };
 
     return (
@@ -141,18 +99,17 @@ export default function FormSignup() {
                 <p>Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character.</p>
             )}
             <label>
-                <div>
+                <div className="div_radio">
                     <input type="radio" value="artist" {...register("status")} onChange={(e) => setStatus(e.target.value)} />
-                    I'm an Artist
+                    <div>I'm an Artist</div>
                 </div>
             </label>
             <label>
-                <div>
+                <div className="div_radio">
                     <input type="radio" value="public" {...register("status")} onChange={(e) => setStatus(e.target.value)} />
-                    I'm a Public
+                    <div>I'm a Public</div>
                 </div>
             </label>
-            <pre>{JSON.stringify(watch(), null, 2)}</pre>
             <ButtonSubmit content="Sign-Up"/>
             <div>Already registered ? <a href="/login">Log-in</a></div>
         </form>

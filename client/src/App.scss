@@ -1,0 +1,43 @@
+// @import "../src/sass/Base/reset";
+@import "../src/sass/Utils/variables";
+@import "../src/sass/Utils/mixins";
+
+@import "../src/sass/Layout/header";
+@import "../src/sass/Layout/navbar";
+@import "../src/sass/Layout/forms";
+@import "../src/sass/Layout/footer";
+
+@import "../src/sass/Components/button";
+
+@import "../src/sass/Pages/artists";
+@import "../src/sass/Pages/concert-halls";
+@import "../src/sass/Pages/concerts";
+@import "../src/sass/Pages/contact";
+@import "../src/sass/Pages/home";
+@import "../src/sass/Pages/landing-page";
+@import "../src/sass/Pages/login-signup-contact";
+@import "../src/sass/Pages/my-account";
+
+#root {
+    max-width: 1800px;
+    margin: 0 auto;
+    /* padding: 2rem;s */
+    text-align: center;
+}
+
+// .logo {
+//     height: 6em;
+//     padding: 1.5em;
+//     will-change: filter;
+//     transition: filter 300ms;
+//     &:hover {
+//         filter: drop-shadow(0 0 2em #646cffaa);
+//     }
+//     .logo.react:hover {
+//         filter: drop-shadow(0 0 2em #61dafbaa);
+//     }
+// }
+
+h2 {
+    color: #fff;
+}

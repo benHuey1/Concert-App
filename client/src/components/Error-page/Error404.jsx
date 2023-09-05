@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../../App.scss"
 
 export default function Error404() {
     return (

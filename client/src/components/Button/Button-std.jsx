@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import "./Button.css";
+import "../../App.scss";
 
 export default function ButtonSTD({content, onclick, backImage}) {
     return (

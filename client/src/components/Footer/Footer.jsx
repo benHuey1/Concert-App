@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./Footer.css"
+import "../../App.scss"
 
 export default function Footer() {
     
@@ -15,23 +15,23 @@ export default function Footer() {
 
     return (
         <>
-        <footer>
-            <div className="footer_infos">
+        <footer className="footer">
+            <div className="footer__infos">
                 <h2><img src="/logo-site.png" alt="" /></h2>
                 {/* <img id="logo_site" src="/logo-site.svg" alt=""/> */}
-                <div className="infos">
+                <div className="footer__infos__content">
                     <span><img src="/map.svg" alt="map-picture" /> Square des Martyrs, 6000 Charleroi</span>
                     <span><img src="/phone.svg" alt="phone-picture" /> (123) 456-7890</span>
                     <span><img src="/mail.svg" alt="mail-picture" /> vibz.info@vibz-contact.com</span>
                 </div>
             </div>
-            <div className="footer_nav_copy">
-                <nav className="footer_navbar">
+            <div className="footer__navbar">
+                <nav className="footer__navbar__content">
                     <NavLink  to="/" className={"nav_link"}>Home</NavLink>
                     <NavLink  to="/contact" className={"nav_link"}>Contact</NavLink>
                     <NavLink  to="/my-account" className={"nav_link"}>My Account</NavLink>
                 </nav>
-                <span className="copyright">Copyright © 2023 • VIBZ Inc</span>
+                <span className="footer__navbar__copyright">Copyright © 2023 • VIBZ Inc</span>
             </div>
         </footer>
         </>
