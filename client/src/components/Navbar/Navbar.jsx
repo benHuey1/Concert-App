@@ -1,6 +1,5 @@
 import { React, useContext, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import "./Navbar.css"
 import axios from "axios";
 import Modal from "../Modal/Modal";
 import { ConcertContext } from "../Modal/concert-context";
@@ -60,22 +59,22 @@ export default function Navbar() {
     return (
         <>
         <nav className="navbar">
-            <NavLink  to="/"><img id="logo_site" src="/logo-site.svg" alt=""/></NavLink>
-            <NavLink  to="/" className={"nav_link"}>Home</NavLink>
-            <NavLink  to="/contact" className={"nav_link"}>Contact</NavLink>
-            <NavLink  to="/my-account" className={"nav_link"}>My Account</NavLink>
+            <NavLink  to="/"><img id="logo-site" src="/logo-site.svg" alt=""/></NavLink>
+            <NavLink  to="/" className={"navbar__link"}>Home</NavLink>
+            <NavLink  to="/contact" className={"navbar__link"}>Contact</NavLink>
+            <NavLink  to="/my-account" className={"navbar__link"}>My Account</NavLink>
             {isLoggedIn ? null : (
-                <NavLink to="/login" className={"nav_link"}>Login</NavLink>
+                <NavLink to="/login" className={"navbar__link"}>Login</NavLink>
              )}
             {isLoggedIn ? (
-                <NavLink to="/" className={"nav_link"} onClick={handleLogout}>Logout</NavLink>
+                <NavLink to="/" className={"navbar__link"} onClick={handleLogout}>Logout</NavLink>
             ) : null}
             
                 <Modal content={concertCart.length > 0 && (
                     <>
                     <h2>Your Cart 🎵</h2>
                         {concertCart.map((concert) => (
-                            <div key={concert.id} id={`cart-${concert.id}`} className="modal_content_item">
+                            <div key={concert.id} id={`cart-${concert.id}`} className="modal__content__item">
                                 <div>{concert.artist}</div>
                                 <div>{concert.city}</div>
                                 <div>{concert.date}</div>

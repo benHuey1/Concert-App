@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Home.css"
+import "../../App.scss"
 
 export default function LandingPage() {
     const [ concerts, setConcerts] = useState([]);
@@ -33,14 +33,14 @@ export default function LandingPage() {
   `;
     return (
         <>
-            <div className="landing_page">
-            <section className="landing_page_introduction">
-                <div className="landing_page_introduction_text">
+            <div className="landing-page">
+            <section className="landing-page__introduction">
+                <div className="landing-page__introduction__text">
                     <h2>VIBZ</h2>
                     <p>VIBZ is a global ticketing platform that enables fans to buy tickets for concerts. With a focus on putting on accessibility first. We strive to improve the overall experience of attending live concerts. Enjoy the visit !</p>
                 </div>
                 <style>{styleIntroDiapo}</style>
-                <div className="landing_page_introduction_background" style={{
+                <div className="landing-page__introduction__background" style={{
                     animationName: "fondu",
                     animationDuration: "15s",
                     animationTimingFunction: "ease-in-out",

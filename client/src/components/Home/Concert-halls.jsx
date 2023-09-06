@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./Concert-halls.css"
 
 export default function ConcertHalls() {
     const [concertHalls, setConcertHalls] = useState([]);
@@ -29,31 +28,31 @@ export default function ConcertHalls() {
     return(
         <>
         <section>
-        <h2>It's the place for concert halls :</h2>
-        <div className="concerthalls-book">
-            <div className="searchbar">
-                <label htmlFor="">Search: </label>
-                <input type="text" onChange={handleSearch} />
+            <h2>It's the place for concert halls :</h2>
+            <div className="concerthalls">
+                <div className="searchbar">
+                    <label htmlFor="">Search: </label>
+                    <input type="text" onChange={handleSearch} />
+                </div>
+                <div className="concertHalls__book">
+                {filteredConcertHalls.map((concertHall) => {
+                    
+                    return (
+                        <>
+                            <div className="concertHalls__book__card" key={concertHall.id} id={`${concertHall.name}-${concertHall.id}`}>
+                                <h2>{concertHall.name} - {concertHall.city}</h2>
+                                <img className="concertHalls__book__card__picture" src={concertHall.picture_outside} alt={concertHall.name} />
+                                <div className="concertHalls__book__card__details">
+                                    <p>{concertHall.city}</p>
+                                    <p>{concertHall.description}</p>
+                                <img className="concertHalls__book__card__picture" src={concertHall.picture_inside} alt={concertHall.name} />
+                                </div>
+                            </div>                   
+                        </>
+                    );
+                })}
+                </div>
             </div>
-            <div className="concertHalls">
-            {filteredConcertHalls.map((concertHall) => {
-                
-                return (
-                    <>
-                        <div className="concertHalls_card" key={concertHall.id} id={`${concertHall.name}-${concertHall.id}`}>
-                            <h2>{concertHall.name} - {concertHall.city}</h2>
-                            <img className="concertHalls_picture" src={concertHall.picture_outside} alt={concertHall.name} />
-                            <div className="concertHalls_details">
-                                <p>{concertHall.city}</p>
-                                <p>{concertHall.description}</p>
-                            <img className="concertHall_picture" src={concertHall.picture_inside} alt={concertHall.name} />
-                            </div>
-                        </div>                   
-                    </>
-                );
-            })}
-            </div>
-        </div>
         </section>
         </>
     )

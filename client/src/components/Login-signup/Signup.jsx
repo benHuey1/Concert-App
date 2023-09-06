@@ -1,6 +1,5 @@
 import React from "react";
 import FormSignup from "../Form/Form-signup";
-import "../../sass/Layout/_forms.scss"
 
 export default function Signup() {
     return (

@@ -1,0 +1,54 @@
+.artists {
+    display: flex;
+    flex-direction: column;
+    &__book {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        &__card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-height: 300px;
+            max-width: 300px;
+            overflow: hidden;
+            margin: 5px 0;
+            &:hover {
+                cursor: pointer;
+                h2 {
+                    color: gray;
+                }
+                .plus_icon {
+                    display: block;
+                }
+                .artists__book__picture {
+                    filter: blur(2px);
+                }
+            }
+            &__picture {
+                width: 300px;
+                height: auto;
+            }
+        }
+        // & > * {
+        //     flex: 1 0 300px;
+        // }
+        @include responsive-desktop {
+            // display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            gap: 10px;
+        }
+    }
+}
+.plus_icon {
+    display: none;
+    z-index: 1;
+    position: relative;
+    top: -130px;
+    width: 50px;
+    color: #f0f8ff;
+    height: auto;
+}

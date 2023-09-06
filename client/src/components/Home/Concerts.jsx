@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef, useContext } from "react"
-import "./Concerts.css"
 import { useNavigate } from "react-router-dom";
 import { ConcertContext } from "../Modal/concert-context";
 
@@ -50,20 +49,20 @@ export default function Concerts() {
             {concerts.map((concert) => {
                 return (
                     <>
-                    <div className="concerts_card" key={concert.index} id={`concert-${concert.id}`}>
+                    <div className="concerts__card" key={concert.index} id={`concert-${concert.id}`}>
                         <div className="arc-top-l"></div>
                         <div className="arc-top-r"></div>
-                        <div className="concerts_card_text">
-                            <div className="concerts_card_date">{formatDate(concert.date_hour)}</div>
-                            <div className="concerts_card_infos">
-                                <img className="concerts_card_infos_plus_icon" id={`img-plus-${concert.id}`} src="/logo-plus.svg" alt="plus-icon" />
+                        <div className="concerts__card__text">
+                            <div className="concerts__card__date">{formatDate(concert.date_hour)}</div>
+                            <div className="concerts__card__infos">
+                                <img className="concerts__card__infos__plus_icon" id={`img-plus-${concert.id}`} src="/logo-plus.svg" alt="plus-icon" />
                                 <div className="concerts_card_infos_artist" >{concert.artist}</div>
                                 {/* <div>In the famous concert hall {concert.concert_hall}</div> */}
-                                <div className="concerts_card_infos_city">{concert.city}</div>
+                                <div className="concerts__card__infos__city">{concert.city}</div>
                                 {/* <div>Style : {concert.style}</div> */}
-                                <div className="concerts_card_infos_ticket">{concert.ticket_cost}€</div>
+                                <div className="concerts__card__infos__ticket">{concert.ticket_cost}€</div>
                             </div>
-                            <div className="concerts_card_cart"><img src="/ticket.svg" id={`button-add-${concert.id}`} onClick={handleAddConcertToCart} alt="" /></div>
+                            <div className="concerts__card__cart"><img src="/ticket.svg" id={`button-add-${concert.id}`} onClick={handleAddConcertToCart} alt="" /></div>
                         </div>
                         <div className="arc-bottom-l"></div>
                         <div className="arc-bottom-r"></div>

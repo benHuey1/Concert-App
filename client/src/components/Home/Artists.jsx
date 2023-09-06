@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import "./Artists.css"
 
 export default function Artists() {
     const [artists, setArtists] = useState([]);
@@ -52,20 +51,20 @@ export default function Artists() {
         <>
         <section>
         <h2>It's the place for artists :</h2>
-        <div className="artists_book">
+        <div className="artists">
             <div>
                 <label htmlFor="">Search: </label>
                 <input type="text" onChange={handleSearch} />
             </div>
-            <div className="artists">
+            <div className="artists__book">
               {filteredArtists.map((artist) => {
                   
                   return (
                       <>
-                          <div className="artists_card" key={artist.id} id={`${artist.name}-${artist.id}`}  style={getArtistCardStyle(artist)}
+                          <div className="artists__book__card" key={artist.id} id={`${artist.name}-${artist.id}`}  style={getArtistCardStyle(artist)}
                   onClick={() => handleArtistClick(artist)}>
                               <h2>{artist.name} - {(artist.on_tour == 1)? "On Tour" : "Not currently on tour"}</h2>
-                              <img className="artists_picture" src={artist.picture} alt={artist.name} />
+                              <img className="artists__book__card__picture" src={artist.picture} alt={artist.name} />
                               <img className="plus_icon" src="/logo-plus.svg" alt="plus-icon" />
                               <ul>
                                   <p>{artist.style}</p>
