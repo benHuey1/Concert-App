@@ -9,7 +9,7 @@ The use experience is divided into 2 parts :
 ## Tech.
 
 ![REACT](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/60px-React-icon.svg.png)
-Node.js, MySQL
+Node.js, MySQL, Sass
 
 ## Features
 
