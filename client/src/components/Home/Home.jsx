@@ -1,7 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import "../Navbar/Navbar.css"
-import axios from "axios";
-import "./Home.css"
+import "../../App.scss"
 
 export default function Home() {
 
@@ -14,7 +12,7 @@ export default function Home() {
 
     return (
         <>
-            <nav className="navbar_home">
+            <nav className="navbar-home">
                 <NavLink to="/home/concerts" style={styleLink}>Concerts</NavLink>
                 <NavLink to="/home/artists" style={styleLink}>Artists</NavLink>
                 <NavLink to="/home/concert-halls" style={styleLink}>Concert Halls</NavLink>

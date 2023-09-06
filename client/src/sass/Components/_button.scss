@@ -1,0 +1,12 @@
+.button_submit {
+    max-width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: $button-bg-color;
+    &:hover {
+        background-color: $button-bg-color-hover;
+    }
+    &:active {
+        color: $button-bg-color-active;
+    }
+}

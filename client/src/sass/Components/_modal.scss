@@ -15,28 +15,24 @@
     overflow: auto;
     border: 2px solid #000;
     border-radius: 15px 0px 15px 15px;
-    box-shadow: -10px 10px 30px -10px rgba(0,0,0,0.75);
+    box-shadow: -10px 10px 30px -10px rgba(0, 0, 0, 0.75);
     padding: 0px 5px 5px;
     gap: 10px;
     transition: all 1s ease-out;
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        gap: 10px;
+    }
 }
-.modal_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    gap: 10px;
-}
-.show{
+.show {
     transform: translateX(0);
 }
-.hide{
+.hide {
     transform: translateX(105%);
     background-color: #a44bbd;
-    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
     filter: blur(10px);
-}
-.button_card{
-    height: 20px;
-    padding: 20px 0px;
 }

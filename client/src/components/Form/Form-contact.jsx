@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ButtonSubmit from "../Button/Button-Submit";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import "../../App.scss"
 
 export default function FormContact() {
     const [name, setName] = useState('');
