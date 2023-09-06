@@ -19,7 +19,7 @@
                 h2 {
                     color: gray;
                 }
-                .plus_icon {
+                .plus-icon {
                     display: block;
                 }
                 .artists__book__picture {
@@ -28,6 +28,15 @@
             }
             &__picture {
                 width: 300px;
+                height: auto;
+            }
+            .plus-icon {
+                display: none;
+                z-index: 1;
+                position: relative;
+                top: -130px;
+                width: 50px;
+                color: #f0f8ff;
                 height: auto;
             }
         }
@@ -42,13 +51,4 @@
             gap: 10px;
         }
     }
-}
-.plus_icon {
-    display: none;
-    z-index: 1;
-    position: relative;
-    top: -130px;
-    width: 50px;
-    color: #f0f8ff;
-    height: auto;
 }

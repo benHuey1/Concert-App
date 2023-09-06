@@ -65,7 +65,7 @@ export default function Artists() {
                   onClick={() => handleArtistClick(artist)}>
                               <h2>{artist.name} - {(artist.on_tour == 1)? "On Tour" : "Not currently on tour"}</h2>
                               <img className="artists__book__card__picture" src={artist.picture} alt={artist.name} />
-                              <img className="plus_icon" src="/logo-plus.svg" alt="plus-icon" />
+                              <img className="plus-icon" src="/logo-plus.svg" alt="plus-icon" />
                               <ul>
                                   <p>{artist.style}</p>
                                   <p>{artist.contact}</p>

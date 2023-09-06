@@ -31,26 +31,42 @@ export default function LandingPage() {
       100% { background-image: url("${concerts[3]?.artist_picture}"); }
     }
   `;
+    const aFewConcerts = concerts.slice(0,3);
     return (
         <>
             <div className="landing-page">
-            <section className="landing-page__introduction">
-                <div className="landing-page__introduction__text">
-                    <h2>VIBZ</h2>
-                    <p>VIBZ is a global ticketing platform that enables fans to buy tickets for concerts. With a focus on putting on accessibility first. We strive to improve the overall experience of attending live concerts. Enjoy the visit !</p>
-                </div>
-                <style>{styleIntroDiapo}</style>
-                <div className="landing-page__introduction__background" style={{
-                    animationName: "fondu",
-                    animationDuration: "15s",
-                    animationTimingFunction: "ease-in-out",
-                    animationIterationCount: "infinite",
-                }}>
-                </div>
-            </section>
-            <section>PART 2</section>
-            <section>PART 3</section>
-            <section>PART 4</section>
+                <section className="landing-page__introduction">
+                    <div className="landing-page__introduction__text">
+                        <h2>VIBZ</h2>
+                        <p>VIBZ is a global ticketing platform that enables fans to buy tickets for concerts. With a focus on putting on accessibility first. We strive to improve the overall experience of attending live concerts.</p>
+                        <p>Enjoy the visit !</p>
+                    </div>
+                    <style>{styleIntroDiapo}</style>
+                    <div className="landing-page__introduction__background" style={{
+                        animationName: "fondu",
+                        animationDuration: "15s",
+                        animationTimingFunction: "ease-in-out",
+                        animationIterationCount: "infinite",
+                    }}>
+                    </div>
+                </section>
+                <section className="landing-page__concerts">
+                    { aFewConcerts.map((concert) => {
+                        return(
+                            <>
+                            <div className="landing-page__concerts__content">
+                                <div>{concert.artist}</div>
+                                <div>{concert.city}</div>
+                                <div>{concert.concert_hall}</div>
+                                <div>{concert.date_hour}</div>
+                                <div>{concert.style}</div>
+                            </div>
+                            </>
+                        )
+                    })}
+                </section>
+                <section>PART 3</section>
+                <section>PART 4</section>
             </div>
         </>
     )

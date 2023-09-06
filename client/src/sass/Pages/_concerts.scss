@@ -21,12 +21,12 @@
             width: 80%;
             border-right: dotted;
             &:hover {
-                .concerts_card_infos_plus_icon {
+                .plus-icon {
                     display: block;
                     cursor: pointer;
                 }
             }
-            &__plus_icon {
+            .plus-icon {
                 display: none;
                 z-index: 1;
                 position: absolute;

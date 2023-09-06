@@ -1,7 +1,7 @@
 import { React, useContext, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Modal from "../Modal/Modal";
+import Modal from "../Modal/Modal-cart";
 import { ConcertContext } from "../Modal/concert-context";
 import ButtonSTD from "../Button/Button-std";
 import ButtonSubmit from "../Button/Button-Submit";
