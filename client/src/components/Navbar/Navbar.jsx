@@ -55,21 +55,29 @@ export default function Navbar() {
         const cartToRemove = document.getElementById(`cart-${ID}`);
         cartToRemove.remove();
     }
-
+    const [isShown, setIsShown] = useState(false);
+    const handleMenu = (e) => {
+        setIsShown(!isShown);
+        
+    }
+    const showHideStyleNav = isShown ? 'navbar__menu-mob showNav' : 'navbar__menu-mob hideNav';
+    const upSideDownMenu = isShown ? 'navbar__menu-mob__logo upSide' : 'navbar__menu-mob__logo downSide';
     return (
         <>
         <nav className="navbar">
             <NavLink  to="/"><img id="logo-site" src="/logo-site.svg" alt=""/></NavLink>
-            <NavLink  to="/" className={"navbar__link"}>Home</NavLink>
-            <NavLink  to="/contact" className={"navbar__link"}>Contact</NavLink>
-            <NavLink  to="/my-account" className={"navbar__link"}>My Account</NavLink>
-            {isLoggedIn ? null : (
-                <NavLink to="/login" className={"navbar__link"}>Login</NavLink>
-             )}
-            {isLoggedIn ? (
-                <NavLink to="/" className={"navbar__link"} onClick={handleLogout}>Logout</NavLink>
-            ) : null}
-            
+            <div className={"navbar__menu-desk"}>
+                <NavLink  to="/" className={"navbar__link"}>Home</NavLink>
+                <NavLink  to="/contact" className={"navbar__link"}>Contact</NavLink>
+                <NavLink  to="/my-account" className={"navbar__link"}>My Account</NavLink>
+                {isLoggedIn ? null : (
+                    <NavLink to="/login" className={"navbar__link"}>Login</NavLink>
+                )}
+                {isLoggedIn ? (
+                    <NavLink to="/" className={"navbar__link"} onClick={handleLogout}>Logout</NavLink>
+                ) : null}
+            </div>
+            <div className={upSideDownMenu} onClick={handleMenu}/>
                 <Modal content={concertCart.length > 0 && (
                     <>
                     <h2>Your Cart 🎵</h2>
@@ -85,6 +93,19 @@ export default function Navbar() {
                     </>
                 )}/>
         </nav>
+        <div>
+            <div className={showHideStyleNav}>
+                <NavLink  to="/" className={"navbar__link"}>Home</NavLink>
+                <NavLink  to="/contact" className={"navbar__link"}>Contact</NavLink>
+                <NavLink  to="/my-account" className={"navbar__link"}>My Account</NavLink>
+                {isLoggedIn ? null : (
+                    <NavLink to="/login" className={"navbar__link"}>Login</NavLink>
+                )}
+                {isLoggedIn ? (
+                    <NavLink to="/" className={"navbar__link"} onClick={handleLogout}>Logout</NavLink>
+                ) : null}
+            </div>
+        </div>
         </>
     )
 }

@@ -9,7 +9,7 @@
     align-content: center;
     line-height: 30px;
     background-color: #fff;
-    width: 400px;
+    width: 96vw;
     min-height: 200px;
     max-height: 80vh;
     overflow: auto;
@@ -19,6 +19,9 @@
     padding: 0px 5px 5px;
     gap: 10px;
     transition: all 1s ease-out;
+    @include responsive-tablet {
+        width: 400px;
+    }
     &__content {
         display: flex;
         flex-direction: column;

@@ -35,20 +35,25 @@ export default function LandingPage() {
     return (
         <>
             <div className="landing-page">
-                <section className="landing-page__introduction">
+                <section className="landing-page__introduction"style={{
+                        animationName: "fondu",
+                        animationDuration: "15s",
+                        animationTimingFunction: "ease-in-out",
+                        animationIterationCount: "infinite",
+                    }}>
                     <div className="landing-page__introduction__text">
                         <h2>VIBZ</h2>
                         <p>VIBZ is a global ticketing platform that enables fans to buy tickets for concerts. With a focus on putting on accessibility first. We strive to improve the overall experience of attending live concerts.</p>
                         <p>Enjoy the visit !</p>
                     </div>
                     <style>{styleIntroDiapo}</style>
-                    <div className="landing-page__introduction__background" style={{
+                    {/* <div className="landing-page__introduction__background" style={{
                         animationName: "fondu",
                         animationDuration: "15s",
                         animationTimingFunction: "ease-in-out",
                         animationIterationCount: "infinite",
                     }}>
-                    </div>
+                    </div> */}
                 </section>
                 <section className="landing-page__concerts">
                     { aFewConcerts.map((concert) => {
