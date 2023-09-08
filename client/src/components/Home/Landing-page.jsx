@@ -11,18 +11,6 @@ export default function LandingPage() {
             // console.log(data);
         })
     })
-    // const styleIntroDiapo = (concerts) => {
-    //     return{
-    //     animation: "fondu 15s ease-in-out infinite both",
-        
-    //    "@keyframes fondu": {
-    //         "0%": {backgroundImage: `url("${concerts[0].artist_picture}")`},
-    //         "33.33%": {backgroundImage: `url("${concerts[1].artist_picture}")`},
-    //         "66.67%": {backgroundImage: `url("${concerts[2].artist_picture}")`},
-    //         "100%": {backgroundImage: `url("${concerts[3].artist_picture}")`}
-    //     }}
-
-    // }
     const styleIntroDiapo = `
     @keyframes fondu {
       0% { background-image: url("${concerts[0]?.artist_picture}"); }
@@ -31,7 +19,30 @@ export default function LandingPage() {
       100% { background-image: url("${concerts[3]?.artist_picture}"); }
     }
   `;
-    const aFewConcerts = concerts.slice(0,3);
+    const aFewConcerts = concerts.slice(0,5);
+    const [reveals, setReveals] = useState([]);
+
+    useEffect(() => {
+      setReveals(document.querySelectorAll(".reveal"));
+    }, []);
+  
+    const handleReveal = () => {
+      const windowHeight = window.innerHeight;
+      for (let i = 0; i < reveals.length; i++) {
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const elementVisible = 150;
+  
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        } else {
+          reveals[i].classList.remove("active");
+        }
+      }
+    };
+  
+    window.addEventListener("scroll", handleReveal);
+
+
     return (
         <>
             <div className="landing-page">
@@ -47,25 +58,35 @@ export default function LandingPage() {
                         <p>Enjoy the visit !</p>
                     </div>
                     <style>{styleIntroDiapo}</style>
-                    {/* <div className="landing-page__introduction__background" style={{
-                        animationName: "fondu",
-                        animationDuration: "15s",
-                        animationTimingFunction: "ease-in-out",
-                        animationIterationCount: "infinite",
-                    }}>
-                    </div> */}
                 </section>
                 <section className="landing-page__concerts">
+                    <div><img src="/drop-down.png"/><h2>Upcoming Concerts !</h2><img src="/drop-down.png"/></div>
                     { aFewConcerts.map((concert) => {
                         return(
                             <>
-                            <div className="landing-page__concerts__content">
-                                <div>{concert.artist}</div>
-                                <div>{concert.city}</div>
-                                <div>{concert.concert_hall}</div>
-                                <div>{concert.date_hour}</div>
-                                <div>{concert.style}</div>
-                            </div>
+                                <div className="landing-page__concerts__content reveal" >
+                                    <div className="landing-page__concerts__content__artist-picture" style={{
+                                        background: `url(${concert.artist_picture})`,
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundPosition: "center",
+                                        backgroundSize: "cover"
+                                    }}></div>
+                                    <div className="landing-page__concerts__content__concert-hall-picture" style={{
+                                        background: `url(${concert.concert_hall_picture})`,
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundPosition: "center",
+                                        backgroundSize: "cover"
+                                    }}></div>
+                                    <div className="landing-page__concerts__content__text">
+                                        <h3>{concert.artist}</h3>
+                                        <ul>
+                                            <li>{concert.city}</li>
+                                            <li>{concert.concert_hall}</li>
+                                            <li>{concert.date_hour}</li>
+                                            <li>{concert.style}</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </>
                         )
                     })}

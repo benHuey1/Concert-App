@@ -1,12 +1,12 @@
 .landing-page {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    // gap: 10px;
     &__introduction {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
+        // width: 100%;
         height: 500px;
         background-color: #ededed;
         background-size: cover;
@@ -29,7 +29,7 @@
             }
         }
         &__background {
-            width: 100%;
+            // width: 100%;
             min-height: 500px;
             background-color: #ededed;
             background-size: cover;
@@ -37,4 +37,100 @@
             background-position: center;
         }
     }
+    &__concerts {
+        border: 1px solid black;
+        background-color: #000;
+        color: #fff;
+        margin: auto;
+        img {
+            padding: 10px 0;
+        }
+        &__content {
+            display: flex;
+            // flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            // background-color: #0e21a0;
+            color: #fff;
+            height: 30vh;
+            // width: 100%;
+            @include responsive-desktop {
+                height: 60vh;
+            }
+            &__artist-picture {
+                // z-index: 1;
+                width: 50%;
+                height: 100%;
+            }
+            &__concert-hall-picture {
+                // z-index: 1;
+                width: 50%;
+                height: 100%;
+            }
+            &__text {
+                z-index: 1;
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 60vw;
+                margin: auto;
+                padding: 5% 10%;
+                font-size: small;
+                background-color: #00000061;
+                backdrop-filter: blur(10px);
+                border-radius: 10px;
+                @include responsive-desktop {
+                    flex-direction: row;
+                    width: 40vw;
+                    padding: 7% 7%;
+                    font-size: larger;
+                    gap: 50px;
+                }
+                h3 {
+                    text-decoration: underline;
+                    @include responsive-desktop {
+                        display: flex;
+                        align-items: center;
+                        text-decoration: none;
+                        outline-style: solid;
+                        outline-color: #fff;
+                        outline-width: medium;
+                        outline-offset: 10px;
+                        font-size: xx-large;
+                    }
+                }
+                ul {
+                    text-align: left;
+                    list-style: red;
+                    @include responsive-desktop {
+                    }
+                    li {
+                        display: flex;
+                        justify-content: start;
+                        background-image: url("/arrow-right.png");
+                        background-repeat: no-repeat;
+                        background-position: left;
+                        padding: 5px 25px;
+                        margin: 0;
+                    }
+                }
+                @include responsive-tablet {
+                    margin: 75px auto;
+                    height: 10vh;
+                }
+            }
+        }
+    }
+}
+.reveal {
+    position: relative;
+    transform: translateX(150px);
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+.reveal.active {
+    transform: translateX(0);
+    opacity: 1;
 }
