@@ -41,7 +41,12 @@ export default function LandingPage() {
     };
   
     window.addEventListener("scroll", handleReveal);
-
+    
+    const formatDate = (dateString) => {
+        const options = { day: "2-digit", month: "long", year: "numeric" };
+        const date = new Date(dateString);
+        return `${date.toLocaleDateString("En-US", options)}`;
+    };
 
     return (
         <>
@@ -82,7 +87,7 @@ export default function LandingPage() {
                                         <ul>
                                             <li>{concert.city}</li>
                                             <li>{concert.concert_hall}</li>
-                                            <li>{concert.date_hour}</li>
+                                            <li>{formatDate(concert.date_hour)}</li>
                                             <li>{concert.style}</li>
                                         </ul>
                                     </div>

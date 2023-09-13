@@ -62,7 +62,7 @@ export default function Concerts() {
                                 {/* <div>Style : {concert.style}</div> */}
                                 <div className="concerts__card__infos__ticket">{concert.ticket_cost}€</div>
                             </div>
-                            <div className="concerts__card__cart"><img src="/ticket.svg" id={`button-add-${concert.id}`} onClick={handleAddConcertToCart} alt="" /></div>
+                            <div className="concerts__card__cart" id={`button-add-${concert.id}`} onClick={handleAddConcertToCart}></div>
                         </div>
                         <div className="arc-bottom-l"></div>
                         <div className="arc-bottom-r"></div>

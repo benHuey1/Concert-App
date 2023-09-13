@@ -36,15 +36,7 @@ export default function Artists() {
   };
 
     const getArtistCardStyle = (artist) => {
-    if (selectedArtist && selectedArtist.id === artist.id) {
-      return {
-        maxHeight: '1500px'
-      };
-    } else {
-      return {
-        maxHeight: '300px'
-      };
-    }
+      return (selectedArtist && selectedArtist.id === artist.id) ? "artists__book__card reveal-bio" : "artists__book__card hide-bio"
   };
     
     return(
@@ -61,17 +53,24 @@ export default function Artists() {
                   
                   return (
                       <>
-                          <div className="artists__book__card" key={artist.id} id={`${artist.name}-${artist.id}`}  style={getArtistCardStyle(artist)}
+                          <div className={getArtistCardStyle(artist)} key={artist.id} id={`${artist.name}-${artist.id}`}
                   onClick={() => handleArtistClick(artist)}>
                               <h2>{artist.name} - {(artist.on_tour == 1)? "On Tour" : "Not currently on tour"}</h2>
-                              <img className="artists__book__card__picture" src={artist.picture} alt={artist.name} />
+                              <div className="artists__book__card__picture" src=""/*{artist.picture}*/ alt={artist.name} style={{
+                                background: `url(${artist.picture})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "top",
+                                backgroundSize: "cover"
+                             }}/>
                               <img className="plus-icon" src="/logo-plus.svg" alt="plus-icon" />
-                              <ul>
-                                  <p>{artist.style}</p>
-                                  <p>{artist.contact}</p>
-                                  <p>{(artist.on_tour == 1)? "On Tour" : "Not currently on tour"}</p>
-                                  <p>{artist.description}</p>
-                              </ul>
+                              <div  className="artists__book__card__content">
+                                <ul>
+                                    <li>{artist.style}</li>
+                                    <li>{artist.contact}</li>
+                                    <li>{(artist.on_tour == 1)? "On Tour" : "Not currently on tour"}</li>
+                                </ul>
+                                <p>{artist.description}</p>
+                              </div>
                           </div>                   
                       </>
                   );
