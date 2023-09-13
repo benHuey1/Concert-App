@@ -1,24 +1,133 @@
-section {
-    width: 100%;
-    .concertHalls {
-        &__book {
-            display: flex;
-            align-content: space-around;
-            /* flex-wrap: wrap; */
-            &__card {
-                /* flex-grow: 1;
-                flex-basis: 100px; */
+// section {
+//     width: 100%;
+//     .concertHalls {
+//         &__book {
+//             display: flex;
+//             align-content: space-around;
+//             /* flex-wrap: wrap; */
+//             &__card {
+//                 /* flex-grow: 1;
+//                 flex-basis: 100px; */
 
-                /* display: flex;
+//                 /* display: flex;
+//                 flex-direction: column;
+//                 justify-content: start;
+//                 align-items: center; */
+//                 overflow: hidden;
+//                 &__picture {
+//                     width: 100px;
+//                     height: auto;
+//                 }
+//             }
+//         }
+//     }
+// }
+// section {
+.concertHalls {
+    background-color: $bg-black;
+    padding: 20px 0 0;
+    &__searchbar {
+        padding: 10px 0;
+        margin: 50px;
+        color: $text-color-white;
+    }
+    &__book {
+        // border: 1px solid $text-color-white;
+        // margin: auto;
+        img {
+            padding: 10px 0;
+        }
+        &__content {
+            display: flex;
+            // flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            // background-color: #0e21a0;
+            color: $text-color-white;
+            height: 30vh;
+            // width: 100%;
+            @include responsive-desktop {
+                height: 70vh;
+            }
+            &__picture-outside {
+                // z-index: 1;
+                width: 50%;
+                height: 100%;
+            }
+            &__picture-inside {
+                // z-index: 1;
+                width: 50%;
+                height: 100%;
+            }
+            &__text {
+                z-index: 1;
+                position: absolute;
+                display: flex;
                 flex-direction: column;
-                justify-content: start;
-                align-items: center; */
-                overflow: hidden;
-                &__picture {
-                    width: 100px;
-                    height: auto;
+                justify-content: center;
+                align-items: center;
+                width: 60vw;
+                // margin: auto;
+                padding: 5% 10%;
+                font-size: small;
+                background-color: #00000061;
+                backdrop-filter: blur(10px);
+                border-radius: 10px;
+                // gap: 10px;
+                @include responsive-tablet {
+                    margin: 75px auto;
+                    height: 10vh;
                 }
+                @include responsive-desktop {
+                    flex-direction: column;
+                    width: 60vw;
+                    padding: 10% 7%;
+                    font-size: larger;
+                    gap: 50px;
+                }
+                &__introduction {
+                    display: flex;
+                    flex-direction: column;
+                    h3 {
+                        margin-bottom: 10px;
+                        font-size: $font-size-h3;
+                    }
+                }
+                &__description {
+                    display: none;
+                    @include responsive-desktop {
+                    }
+                }
+
+                // ul {
+                //     text-align: left;
+                //     @include responsive-desktop {
+                //     }
+                //     li {
+                //         display: flex;
+                //         justify-content: start;
+                //         background-image: url("/arrow-right.png");
+                //         background-repeat: no-repeat;
+                //         background-position: left;
+                //         padding: 5px 25px;
+                //         margin: 0;
+                //         @include responsive-desktop {
+                //         }
+                //     }
+                // }
             }
         }
     }
+}
+// }
+.reveal-place {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+.reveal-place.active {
+    transform: translateY(0);
+    opacity: 1;
 }

@@ -1,6 +1,11 @@
 .artists {
     display: flex;
     flex-direction: column;
+    background-color: $bg-black;
+    &__searchbar {
+        padding: 10px 0;
+        color: $text-color-white;
+    }
     &__book {
         display: flex;
         flex-direction: column;
@@ -69,13 +74,13 @@
                 height: auto;
                 width: 50px;
                 @include responsive-tablet {
-                    bottom: 35%;
+                    bottom: 45%;
                     left: 47%;
                     // top: -170px;
                 }
                 @include responsive-desktop {
                     display: none;
-                    bottom: 45%;
+                    bottom: 35%;
                     left: 43%;
                 }
             }
@@ -108,7 +113,7 @@
         }
     }
 }
-.reveal-bio {
+.reveal-content {
     .artists {
         &__book {
             &__card {
@@ -133,6 +138,7 @@
                         z-index: 2;
                         transform: translateY(-320px);
                         height: 300px;
+                        max-height: 300px;
                         // overflow: auto;
                     }
                 }
@@ -145,13 +151,15 @@
         opacity: 0;
     }
 }
-.hide-bio {
+.hide-content {
     .artists__book__card__content {
         // display: none;
         // transform: translateY(0px);
         // opacity: 0;
-        transition: 1s ease-out;
+        transition: 1s ease-in;
         @include responsive-desktop {
+            // display: flex;
+            height: 2px;
             transform: translateY(0px);
             z-index: 0;
             // height: 300px;

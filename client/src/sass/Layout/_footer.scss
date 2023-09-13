@@ -1,6 +1,6 @@
 .footer {
     background-color: #a44bbd;
-    color: #fff;
+    color: $text-color-white;
     padding-top: 10px;
     &__infos {
         @include responsive-tablet {
