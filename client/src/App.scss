@@ -1,4 +1,4 @@
-// @import "../src/sass/Base/reset";
+@import "../src/sass/Base/reset";
 @import "../src/sass/Utils/variables";
 @import "../src/sass/Utils/mixins";
 
@@ -26,6 +26,16 @@
     text-align: center;
 }
 
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
 h2 {
+    margin: 0;
+    padding: 10px 0;
     color: $text-color-h2;
+    font-size: $font-size-h2;
+}
+h3 {
+    font-size: $font-size-h3;
 }

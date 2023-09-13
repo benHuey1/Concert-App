@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import "./My-Account.css"
 import { useNavigate } from "react-router-dom";
 import ButtonSubmit from "../Button/Button-Submit";
 import { ConcertContext } from "../Modal/concert-context";

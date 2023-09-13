@@ -55,14 +55,14 @@ export default function Concerts() {
                         <div className="concerts__card__text">
                             <div className="concerts__card__date">{formatDate(concert.date_hour)}</div>
                             <div className="concerts__card__infos">
-                                <img className="concerts__card__infos__plus_icon" id={`img-plus-${concert.id}`} src="/logo-plus.svg" alt="plus-icon" />
-                                <div className="concerts_card_infos_artist" >{concert.artist}</div>
+                                <img className="plus-icon" id={`img-plus-${concert.id}`} src="/logo-plus.svg" alt="plus-icon" />
+                                <div className="concerts__card__infos__artist" >{concert.artist}</div>
                                 {/* <div>In the famous concert hall {concert.concert_hall}</div> */}
                                 <div className="concerts__card__infos__city">{concert.city}</div>
                                 {/* <div>Style : {concert.style}</div> */}
                                 <div className="concerts__card__infos__ticket">{concert.ticket_cost}€</div>
                             </div>
-                            <div className="concerts__card__cart"><img src="/ticket.svg" id={`button-add-${concert.id}`} onClick={handleAddConcertToCart} alt="" /></div>
+                            <div className="concerts__card__cart" id={`button-add-${concert.id}`} onClick={handleAddConcertToCart}></div>
                         </div>
                         <div className="arc-bottom-l"></div>
                         <div className="arc-bottom-r"></div>
