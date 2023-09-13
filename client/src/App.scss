@@ -36,6 +36,22 @@ h2 {
     color: $text-color-h2;
     font-size: $font-size-h2;
 }
+// h3 {
+//     font-size: $font-size-h3;
+// }
+
 h3 {
-    font-size: $font-size-h3;
+    text-decoration: underline;
+    @include responsive-desktop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        outline-style: solid;
+        outline-color: $text-color-white;
+        outline-width: medium;
+        outline-offset: 10px;
+        font-size: xx-large;
+        color: #fff;
+    }
 }

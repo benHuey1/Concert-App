@@ -36,15 +36,14 @@ export default function Artists() {
   };
 
     const getArtistCardStyle = (artist) => {
-      return (selectedArtist && selectedArtist.id === artist.id) ? "artists__book__card reveal-bio" : "artists__book__card hide-bio"
+      return (selectedArtist && selectedArtist.id === artist.id) ? "artists__book__card reveal-content" : "artists__book__card hide-content"
   };
     
     return(
         <>
-        <section>
+        <section className="artists">
         <h2>It's the place for artists :</h2>
-        <div className="artists">
-            <div>
+            <div className="artists__searchbar">
                 <label htmlFor="">Search: </label>
                 <input type="text" onChange={handleSearch} />
             </div>
@@ -76,7 +75,6 @@ export default function Artists() {
                   );
               })}
             </div>
-        </div>
         </section>
         </>
     )
