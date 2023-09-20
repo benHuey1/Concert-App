@@ -92,6 +92,15 @@
                         margin-bottom: 10px;
                         font-size: $font-size-h3;
                     }
+                    a {
+                        text-decoration: underline;
+                        &:hover {
+                            color: $text-color-grey;
+                        }
+                        &:active {
+                            color: $text-color-black;
+                        }
+                    }
                 }
                 &__description {
                     display: none;

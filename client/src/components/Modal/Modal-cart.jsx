@@ -12,13 +12,13 @@ export default function Modal ({content}) {
         setShow(false);
         console.log("HIDE");
     }
-    const showHideStyle = show ? 'modal show' : 'modal hide';
+    const showHideStyle = show ? 'modal-cart show' : 'modal-cart hide';
     return (
         <>
             <ButtonSTD content="CART" onclick={showModal}/>
             <div className={showHideStyle} /*{{(show) ? 'modal show' : 'modal hide'}}*/>
                 <ButtonSTD content="->" backImage={"/logo-plus"} onclick={hideModal}/>
-                <div className="modal__content" >{content}</div>
+                <div className="modal-cart__content" >{content}</div>
             </div>
         </>
     )

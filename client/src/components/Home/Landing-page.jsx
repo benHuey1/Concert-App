@@ -3,12 +3,14 @@ import "../../App.scss"
 
 export default function LandingPage() {
     const [ concerts, setConcerts] = useState([]);
+    const [reveals, setReveals] = useState([]);
     useEffect (() => {
         fetch("http://localhost:3001/concerts")
         .then((response) => response.json())
         .then((data) => {
             setConcerts(data);
             // console.log(data);
+            setReveals(document.querySelectorAll(".reveal"));
         })
     })
     const styleIntroDiapo = `
@@ -20,11 +22,6 @@ export default function LandingPage() {
     }
   `;
     const aFewConcerts = concerts.slice(0,5);
-    const [reveals, setReveals] = useState([]);
-
-    useEffect(() => {
-      setReveals(document.querySelectorAll(".reveal"));
-    }, []);
   
     const handleReveal = () => {
       const windowHeight = window.innerHeight;

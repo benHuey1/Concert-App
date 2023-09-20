@@ -41,7 +41,7 @@ export default function FormSignup() {
                 {...register("name", {
                 required: true,
                 minLength: 2,
-                maxLength: 20,
+                maxLength: 30,
                 pattern: /^[A-Z_]+$/i
                 })} onChange={(e) => setName(e.target.value)}
             />
@@ -52,7 +52,7 @@ export default function FormSignup() {
                 <p>First name cannot subceed 2 characters</p>
             )}
             {errors?.name?.type === "maxLength" && (
-                <p>First name cannot exceed 20 characters</p>
+                <p>First name cannot exceed 30 characters</p>
             )}
             {errors?.name?.type === "pattern" && (
                 // eslint-disable-next-line react/no-unescaped-entities

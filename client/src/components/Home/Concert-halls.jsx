@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function ConcertHalls() {
     const [concertHalls, setConcertHalls] = useState([]);
     const [filteredConcertHalls,setFilteredConcertHalls] = useState([]);
+    const [revealsPlace, setRevealsPlace] = useState([]);
 
 
     useEffect(() => {
@@ -12,6 +13,7 @@ export default function ConcertHalls() {
             // console.log(artists)
             setConcertHalls(data);
             setFilteredConcertHalls(data);
+            setRevealsPlace(document.querySelectorAll(".reveal-place"));
         });
 
     },[])
@@ -24,17 +26,12 @@ export default function ConcertHalls() {
         });
         setFilteredConcertHalls(result);
     }
-    const [revealsPlace, setRevealsPlace] = useState([]);
-
-    useEffect(() => {
-        setRevealsPlace(document.querySelectorAll(".reveal-place"));
-    }, []);
   
     const handleRevealPlace = () => {
       const windowHeight = window.innerHeight;
       for (let i = 0; i < revealsPlace.length; i++) {
         const elementTop = revealsPlace[i].getBoundingClientRect().top;
-        const elementVisible = 150;
+        const elementVisible = 50;
   
         if (elementTop < windowHeight - elementVisible) {
             revealsPlace[i].classList.add("active");
@@ -86,7 +83,7 @@ export default function ConcertHalls() {
                                 <div className="concertHalls__book__content__text">
                                     <div className="concertHalls__book__content__text__introduction">
                                         <h3>{concertHall.name}</h3>
-                                        <p>{"> " + concertHall.city + " <"}</p>
+                                        <p>{"-> in " + concertHall.city + " <-"}</p>
                                         <a href="">More infos</a>
                                     </div>
                                     <div className="concertHalls__book__content__text__description">{concertHall.description}</div>
