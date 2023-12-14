@@ -1,0 +1,168 @@
+.artists {
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-black;
+    &__searchbar {
+        padding: 10px 0;
+        color: $text-color-white;
+    }
+    &__book {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        // gap: 10px;
+        width: 100%;
+        @include responsive-desktop {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            & > * {
+                flex: 1 0 500px;
+            }
+            gap: 40px;
+            margin: 20px 0 50px;
+        }
+        &__card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            // max-width: 300px;
+            // overflow: hidden;
+            // margin: 5px 0;
+            &:hover {
+                cursor: pointer;
+                h2 {
+                    color: gray;
+                }
+                .plus-icon {
+                    display: block;
+                }
+                .artists__book__card__picture {
+                    filter: blur(2px);
+                }
+            }
+            @include responsive-tablet {
+                // flex-direction: row;
+            }
+            &__picture {
+                // width: 300px;
+                z-index: 1;
+                width: 100%;
+                height: 200px;
+                border-radius: 20px;
+                @include responsive-tablet {
+                    height: 300px;
+                }
+                @include responsive-desktop {
+                    // display: none;
+                }
+            }
+            .plus-icon {
+                // display: none;
+                z-index: 2;
+                // position: relative;
+                // top: -120px;
+                // width: 50px;
+                position: absolute;
+                bottom: 42%;
+                left: 43%;
+                right: 0;
+                // margin: 140px auto;
+                color: #f0f8ff;
+                height: auto;
+                width: 50px;
+                @include responsive-tablet {
+                    bottom: 45%;
+                    left: 47%;
+                    // top: -170px;
+                }
+                @include responsive-desktop {
+                    display: none;
+                    bottom: 35%;
+                    left: 43%;
+                }
+            }
+            &__content {
+                max-height: 2px;
+                flex-direction: column;
+                justify-content: center;
+                background-color: $bg-nav-mauve;
+                position: relative;
+                top: -30px;
+                padding: 40px 20px 20px;
+                overflow: hidden;
+                gap: 10px;
+                border-radius: 20px;
+                @include responsive-tablet {
+                }
+                @include responsive-desktop {
+                    position: absolute;
+                    top: 320px;
+                    bottom: 1400px;
+                    // left: 530px;
+                }
+
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+        }
+    }
+}
+.reveal-content {
+    .artists {
+        &__book {
+            &__card {
+                @include responsive-desktop {
+                    flex-direction: row;
+                    h2 {
+                        display: none;
+                    }
+                }
+                &__picture {
+                    @include responsive-desktop {
+                        // display: none;
+                    }
+                }
+                &__content {
+                    max-height: 1000px;
+                    display: flex;
+                    // transform: translateY(0px);
+                    opacity: 1;
+                    transition: 1s all ease-in-out;
+                    @include responsive-desktop {
+                        z-index: 2;
+                        transform: translateY(-320px);
+                        height: 300px;
+                        max-height: 300px;
+                        // overflow: auto;
+                    }
+                }
+            }
+        }
+    }
+    .plus-icon {
+        // display: none;
+        transform: translateY(0px);
+        opacity: 0;
+    }
+}
+.hide-content {
+    .artists__book__card__content {
+        // display: none;
+        // transform: translateY(0px);
+        // opacity: 0;
+        transition: 1s ease-in;
+        @include responsive-desktop {
+            // display: flex;
+            height: 2px;
+            transform: translateY(0px);
+            z-index: 0;
+            // height: 300px;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+@import "../src/sass/Base/reset";
+@import "../src/sass/Utils/variables";
+@import "../src/sass/Utils/mixins";
+
+@import "../src/sass/Layout/header";
+@import "../src/sass/Layout/navbar";
+@import "../src/sass/Layout/forms";
+@import "../src/sass/Layout/footer";
+
+@import "../src/sass/Components/button";
+@import "../src/sass/Components/modal";
+
+@import "../src/sass/Pages/artists";
+@import "../src/sass/Pages/concert-halls";
+@import "../src/sass/Pages/concerts";
+@import "../src/sass/Pages/contact";
+@import "../src/sass/Pages/home";
+@import "../src/sass/Pages/landing-page";
+@import "../src/sass/Pages/login-signup-contact";
+@import "../src/sass/Pages/my-account";
+
+#root {
+    max-width: 1800px;
+    margin: 0 auto;
+    /* padding: 2rem;s */
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+h2 {
+    margin: 0;
+    padding: 10px 0;
+    color: $text-color-h2;
+    font-size: $font-size-h2;
+}
+// h3 {
+//     font-size: $font-size-h3;
+// }
+
+h3 {
+    text-decoration: underline;
+    @include responsive-desktop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        outline-style: solid;
+        outline-color: $text-color-white;
+        outline-width: medium;
+        outline-offset: 10px;
+        font-size: xx-large;
+        color: #fff;
+    }
+}

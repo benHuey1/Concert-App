@@ -1,0 +1,110 @@
+.navbar,
+.navbar-home {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    // padding: 10px 0;
+}
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+    width: 100%;
+    height: 10vh;
+    line-height: 15vh;
+    padding: 10px 0;
+    @include responsive-tablet {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #logo-site {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: auto;
+        // position: relative;
+        // top: 3vh;
+    }
+    &__menu-desk {
+        display: none;
+        @include responsive-tablet {
+            width: 60vw;
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+    &__menu-mob {
+        display: flex;
+        justify-content: space-around;
+        transition: opacity 1s ease-in-out;
+        &__logo {
+            width: 50px;
+            height: 50px;
+            &:hover {
+                cursor: pointer;
+                box-shadow: 5px white;
+                outline: 1px solid white;
+            }
+            &:active {
+                // background-color: #a44bbd;
+                outline: 0;
+            }
+            @include responsive-tablet {
+                display: none;
+            }
+        }
+    }
+    &__link {
+        color: #fff;
+        height: "0px";
+        @include responsive-tablet {
+            display: flex;
+        }
+        &:hover {
+            color: $text-color-grey;
+        }
+        &:active {
+            color: "#a44bbd";
+        }
+    }
+}
+.showNav {
+    display: flex;
+    background-color: $bg-nav-mauve;
+    height: 7vh;
+    line-height: 7vh;
+    border-bottom: 0px 0px 0px 0px $text-color-purple-hover;
+    // transition: opacity 1s ease-in-out;
+}
+.hideNav {
+    display: none;
+    filter: blur(10px);
+    background-color: #000;
+    transition: opacity 1s ease-in-out;
+}
+.upSide {
+    background-image: url("/drop-down.png");
+    transform: rotate3d(1, 0, 0, 180deg);
+    transition: 0.5s;
+}
+.downSide {
+    background-image: url("/drop-down.png");
+    transition: 0.2s;
+}
+.navbar-home {
+    background-color: $bg-nav-mauve;
+    height: 7vh;
+    line-height: 7vh;
+}
+.modal__content__item {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    gap: 20px;
+    border-bottom: 3px solid #00000048;
+}
